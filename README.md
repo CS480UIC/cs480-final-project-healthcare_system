@@ -5,7 +5,7 @@ healthcare_system
 
 Team Members:
 Pranavi Alle
-Hiral Modi
+Hiral Mahesh Modi
 Karan Vishwakarma
 
 Database Description:
