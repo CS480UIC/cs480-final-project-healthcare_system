@@ -4,8 +4,8 @@ Database Name:
 healthcare_system
 
 Team Members:
-Pranavi Alle
-Hiral Mahesh Modi
+Pranavi Alle,
+Hiral Mahesh Modi,
 Karan Vishwakarma
 
 Database Description:
