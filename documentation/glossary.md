@@ -164,27 +164,27 @@ Attributes:
 8)doctor: 
 Attributes:
 
-  doctor_employee_id: 1 - 1
+  	doctor_employee_id: 1 - 1
 	
-  first_name: M - 1
+ 	 first_name: M - 1
   
-  last_name: M - 1
+  	last_name: M - 1
   
-  email : 1 - M
+  	email : 1 - M
   
-  phone_number: M - M
+  	phone_number: M - M
+  	
+  	speciality: M - M
   
-  speciality: M - M
+  	description: M - M
   
-  description: M - M
+  	address: M - M
   
-  address: M - M
+  	city: M - M 
   
-  city: M - M 
+  	pincode: M - 1
   
-  pincode: M - 1
-  
-  country: M - 1
+  	country: M - 1
   
   hospital_id: M - 1
 
