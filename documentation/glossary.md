@@ -54,6 +54,7 @@ c)Per each attribute, determine attribute maxima and minima and document it in t
 
   1)hospital
   Attributes:
+  
     employee_id:  1 - 1 
     
     first_name :  M - 1
@@ -75,6 +76,7 @@ c)Per each attribute, determine attribute maxima and minima and document it in t
 
   2) medicine
 	Attributes:
+	
 	  medicine_id:  1 - 1
 	  
 	  medicine_name: 1 - 1
@@ -88,6 +90,7 @@ c)Per each attribute, determine attribute maxima and minima and document it in t
 
   3)patient_feedback
   Attributes:
+  
   	patient_id: 1 - 1
 	
 	Employee_id: M - M
@@ -103,6 +106,7 @@ c)Per each attribute, determine attribute maxima and minima and document it in t
 
 4)mode_of_payment: 
 Attributes:
+
 	payment_id: 1 - 1
 	
     	first_name: M - 1
@@ -118,54 +122,90 @@ Attributes:
 
 5)employee:
 	Attribute:
+	
 	  Employee_id: 1 - 1
+	  
     first_name: M - 1
+    
     last_name: M - 1
+    
     email: 1 - M
+    
     hospital_name: M - M
+    
     description: M - M
+    
     address: M - M
+    
     city: M - M
+    
     country: M - M
+    
     salary: M - 1
+    
     type_of_employement: M - 1
 
 
 6)hospital_employee:
 	Attribute:
+	
     hospital_id: M - M
+    
     employee_id: M - M
 
 7)hospital_medicine:
   Attribute:
+  
     medicine_id: M - M
+    
     hospital_id: M - M
 
 
 8)doctor: 
 Attributes:
+
 	doctor_employee_id: 1 - 1
+	
   first_name: M - 1
+  
   last_name: M - 1
+  
   email : 1 - M
+  
   phone_number: M - M
+  
   speciality: M - M
+  
   description: M - M
+  
   address: M - M
+  
   city: M - M 
+  
   pincode: M - 1
+  
   country: M - 1
+  
   hospital_id: M - 1
 
 9)patient:
  Attribute:
+ 
   pateient_id: 1 - 1
+  
   employee_id:
+  
   first_name: M - 1
+  
   username: 1-1
+  
   password: 1-1
+  
   address: M - 1
+  
   city: M - 1
+  
   country: M - 1
+  
   payment_id: 1 - 1
 
