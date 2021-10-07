@@ -2,52 +2,56 @@
 **a)Per each entity, document name, synonyms, and description in the glossary**
 
   1)hospital:
+    synonyms:health_center, clinic
+    
     Hospitals help in providing the names of all the available hospital locations in a particular location and help to track the medical services.
 
   2)medicine:
+    synonyms:remedy, drug
+    
     Medicines provide a list of all the names of medical drugs which are available in the stores and hospitals.
 
   3)patient_feedback:
+    synonyms: observation,comment
+    
     Each patient can provide feedback to the medical services provided to them. These feedbacks are stored in the patient_feedback entity.
 
   4)mode_of_payment: 
+    synonyms: modalities_of_payment, form_of_payment
+    
     This entity provides an overview of the payment history of the transactions done by the patients in medical centers.
 
-  5)hospital_medicine:
-    Each hospital consists of a list of medicines which are available in the center. This is stored in this entity. 
-
-  6)hospital_employee: 
-    This entity helps in providing a bridge between the employee and which hospitals they are affiliated with.
-
-  7)doctor:
+  5)doctor:
+    synonyms:physician,clinician
+    
     Each hospital has specialized doctors which assist in the medical treatment of the patients. The details about them are contained in this entity.
 
-  8)patient:
+  6)patient:
+    synonyms:sufferer,victim
+    
     The medical details of the patients are listed in this entity.
 
-  9)employee:
+  7)employee:
+    synonyms:artisan,workman
+    
     Each hospital has a list of employee which help in day to day activities of the hospital. These names are included in this table.
 
 
 
 **b)Per each relationship, determine relationship maxima and minima and document it in the glossary** 
 
-
-  1)hospital M(0) contains hospital_medicine M(0)
-
-  2)medicine M(M) consists hospital_medicine 0(0)
   
-  3)patient M(1) make mode_of_payment 0(0)
+  1)patient M(1) make mode_of_payment 0(0)
   
-  4)patient M(0) gives patient_feedback M(0)
+  2)patient M(0) gives patient_feedback M(0)
   
-  5)doctor M(0) runs hospital M(1)
+  3)doctor M(0) runs hospital M(1)
   
-  6)hospital 1(1) accommodates hospital_employee M(0)
+  4)hospital 1(1) accommodates hospital_employee M(0)
   
-  7)hospital_employee M(0) consists employee M(0)
+  5)hospital_employee M(0) consists employee M(0)
   
-  8)patient M(0) visits hospital M(1)
+  6)patient M(0) visits hospital M(1)
 
 
 **c)Per each attribute, determine attribute maxima and minima and document it in the glossary**
@@ -146,22 +150,8 @@ Attributes:
     type_of_employement: M - 1
 
 
-6)hospital_employee:
-	Attribute:
-	
-    hospital_id: M - M
-    
-    employee_id: M - M
 
-7)hospital_medicine:
-  Attribute:
-  
-    medicine_id: M - M
-    
-    hospital_id: M - M
-
-
-8)doctor: 
+6)doctor: 
 Attributes:
 
   	doctor_employee_id: 1 - 1
@@ -188,7 +178,7 @@ Attributes:
   
   	hospital_id: M - 1
 
-9)patient:
+7)patient:
  Attribute:
  
   	patient_id: 1 - 1
