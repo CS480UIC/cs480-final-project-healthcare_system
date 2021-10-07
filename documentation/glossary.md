@@ -1,13 +1,13 @@
 
-a)**Per each entity, document name, synonyms, and description in the glossary**
+**a)Per each entity, document name, synonyms, and description in the glossary**
 
-  1)hospital
+  1)hospital:
     Hospitals help in providing the names of all the available hospital locations in a particular location and help to track the medical services.
 
-  2)medicine
+  2)medicine:
     Medicines provide a list of all the names of medical drugs which are available in the stores and hospitals.
 
-  3)patient_feedback
+  3)patient_feedback:
     Each patient can provide feedback to the medical services provided to them. These feedbacks are stored in the patient_feedback entity.
 
   4)mode_of_payment: 
@@ -30,7 +30,7 @@ a)**Per each entity, document name, synonyms, and description in the glossary**
 
 
 
-b)**Per each relationship, determine relationship maxima and minima and document it in the glossary** 
+**b)Per each relationship, determine relationship maxima and minima and document it in the glossary** 
 
 
   1)hospital M(0) contains hospital_medicine M(0)
@@ -50,7 +50,7 @@ b)**Per each relationship, determine relationship maxima and minima and document
   8)patient M(0) visits hospital M(1)
 
 
-c)**Per each attribute, determine attribute maxima and minima and document it in the glossary**
+**c)Per each attribute, determine attribute maxima and minima and document it in the glossary**
 
   1)hospital
   Attributes:
@@ -107,7 +107,7 @@ c)**Per each attribute, determine attribute maxima and minima and document it in
 4)mode_of_payment: 
 Attributes:
 
-		payment_id: 1 - 1
+	payment_id: 1 - 1
 	
     	first_name: M - 1
 	
@@ -186,7 +186,7 @@ Attributes:
   
   	country: M - 1
   
-  hospital_id: M - 1
+  	hospital_id: M - 1
 
 9)patient:
  Attribute:
