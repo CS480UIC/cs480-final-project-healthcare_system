@@ -50,7 +50,7 @@ b)**Per each relationship, determine relationship maxima and minima and document
   8)patient M(0) visits hospital M(1)
 
 
-c)Per each attribute, determine attribute maxima and minima and document it in the glossary
+c)**Per each attribute, determine attribute maxima and minima and document it in the glossary**
 
   1)hospital
   Attributes:
@@ -191,21 +191,21 @@ Attributes:
 9)patient:
  Attribute:
  
-  pateient_id: 1 - 1
+  	patient_id: 1 - 1
   
-  employee_id:
+ 	 employee_id:
   
-  first_name: M - 1
+ 	 first_name: M - 1
   
-  username: 1-1
+ 	 username: 1-1
   
-  password: 1-1
+  	password: 1-1
   
-  address: M - 1
+  	address: M - 1
   
-  city: M - 1
+ 	 city: M - 1
   
-  country: M - 1
+ 	 country: M - 1
   
-  payment_id: 1 - 1
+  	payment_id: 1 - 1
 
