@@ -1,5 +1,5 @@
 
-a)Per each entity, document name, synonyms, and description in the glossary
+a)**Per each entity, document name, synonyms, and description in the glossary
 
   1)hospital
     Hospitals help in providing the names of all the available hospital locations in a particular location and help to track the medical services.
@@ -30,16 +30,23 @@ a)Per each entity, document name, synonyms, and description in the glossary
 
 
 
-b)Per each relationship, determine relationship maxima and minima and document it in the glossary (see Section 3.3. from the zyBook)
+b)**Per each relationship, determine relationship maxima and minima and document it in the glossary 
 
 
   1)hospital M(0) contains hospital_medicine M(0)
+
   2)medicine M(M) consists hospital_medicine 0(0)
+  
   3)patient M(1) make mode_of_payment 0(0)
+  
   4)patient M(0) gives patient_feedback M(0)
+  
   5)doctor M(0) runs hospital M(1)
+  
   6)hospital 1(1) accommodates hospital_employee M(0)
+  
   7)hospital_employee M(0) consists employee M(0)
+  
   8)patient M(0) visits hospital M(1)
 
 
