@@ -75,17 +75,17 @@ c)Per each attribute, determine attribute maxima and minima and document it in t
 
 
   2) medicine
-	Attributes:
+  Attributes:
 	
-	  medicine_id:  1 - 1
+	medicine_id:  1 - 1
 	  
-	  medicine_name: 1 - 1
+	medicine_name: 1 - 1
 	  
-	  price:     1 - M
+	price:     1 - M
 	  
-	  expiry_term_year: 1 - M
+	expiry_term_year: 1 - M
 	  
-	  hospital_id:    1 - M
+	hospital_id:    1 - M
 	  
 
   3)patient_feedback
@@ -95,19 +95,19 @@ c)Per each attribute, determine attribute maxima and minima and document it in t
 	
 	Employee_id: M - M
 	
-    	feedback: M - M
+    feedback: M - M
 	
-    	patient_name: M - 1
+    patient_name: M - 1
 	
-    	date_of_feedback: M - M
+    date_of_feedback: M - M
 	
-    	review: M - M
+    review: M - M
 
 
 4)mode_of_payment: 
 Attributes:
 
-	payment_id: 1 - 1
+		payment_id: 1 - 1
 	
     	first_name: M - 1
 	
@@ -123,7 +123,7 @@ Attributes:
 5)employee:
 	Attribute:
 	
-	  Employee_id: 1 - 1
+    Employee_id: 1 - 1
 	  
     first_name: M - 1
     
@@ -164,7 +164,7 @@ Attributes:
 8)doctor: 
 Attributes:
 
-	doctor_employee_id: 1 - 1
+  doctor_employee_id: 1 - 1
 	
   first_name: M - 1
   
