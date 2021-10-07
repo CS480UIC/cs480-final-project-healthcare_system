@@ -45,11 +45,11 @@
   
   2)patient M(0) gives patient_feedback M(0)
   
-  3)doctor M(0) runs hospital M(1)
+  3)doctor M(0) partOf employee M(0)
   
-  4)hospital 1(1) accommodates hospital_employee M(0)
+  4)hospital M(1) contains medicine M(0)
   
-  5)hospital_employee M(0) consists employee M(0)
+  5)hospital M(0) consists employee M(0)
   
   6)patient M(0) visits hospital M(1)
 
