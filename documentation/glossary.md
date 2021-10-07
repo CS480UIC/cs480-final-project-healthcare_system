@@ -76,8 +76,8 @@ c)Per each attribute, determine attribute maxima and minima and document it in t
     review: M - M
 
 
-	4)mode_of_payment: 
-	Attributes:
+4)mode_of_payment: 
+Attributes:
 	  payment_id: 1 - 1
     first_name: M - 1
     last_name: M - 1
