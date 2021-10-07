@@ -1,5 +1,5 @@
 
-a)**Per each entity, document name, synonyms, and description in the glossary
+a)**Per each entity, document name, synonyms, and description in the glossary**
 
   1)hospital
     Hospitals help in providing the names of all the available hospital locations in a particular location and help to track the medical services.
@@ -30,7 +30,7 @@ a)**Per each entity, document name, synonyms, and description in the glossary
 
 
 
-b)**Per each relationship, determine relationship maxima and minima and document it in the glossary 
+b)**Per each relationship, determine relationship maxima and minima and document it in the glossary** 
 
 
   1)hospital M(0) contains hospital_medicine M(0)
@@ -54,43 +54,66 @@ c)Per each attribute, determine attribute maxima and minima and document it in t
 
   1)hospital
   Attributes:
- 	  employee_id:  1 - 1 
+    employee_id:  1 - 1 
+    
     first_name :  M - 1
+    
     last_name :   M - 1
+    
     email :       1 - M
+    
     description :  M - M
+    
     address	:  M - M
+    
     city   :  M - M
+    
     country  :  M- M
+    
     pincode: 	M - M
 
 
   2) medicine
 	Attributes:
 	  medicine_id:  1 - 1
+	  
 	  medicine_name: 1 - 1
+	  
 	  price:     1 - M
+	  
 	  expiry_term_year: 1 - M
+	  
 	  hospital_id:    1 - M
+	  
 
   3)patient_feedback
   Attributes:
   	patient_id: 1 - 1
-	  Employee_id: M - M
-    feedback: M - M
-    patient_name: M - 1
-    date_of_feedback: M - M
-    review: M - M
+	
+	Employee_id: M - M
+	
+    	feedback: M - M
+	
+    	patient_name: M - 1
+	
+    	date_of_feedback: M - M
+	
+    	review: M - M
 
 
 4)mode_of_payment: 
 Attributes:
-	  payment_id: 1 - 1
-    first_name: M - 1
-    last_name: M - 1
-    type_of_payment : M - M
-    doc_referred: M - M
-    date_of_transaction: M - M
+	payment_id: 1 - 1
+	
+    	first_name: M - 1
+	
+    	last_name: M - 1
+	
+    	type_of_payment : M - M
+	
+    	doc_referred: M - M
+	
+    	date_of_transaction: M - M
 
 
 5)employee:
