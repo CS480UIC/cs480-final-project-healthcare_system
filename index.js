@@ -32,10 +32,29 @@ db.connect(function (error) {
 })
 
 app.get('/', (req, res) => {
-    res.render("index", {});
+    res.render("index", { response: { name: "" } });
 
 })
+app.get('/create', (req, res) => {
+    res.render("create", { response: "" });
 
+})
+app.get('/read', (req, res) => {
+    res.render("read", { response: [{}] });
+
+})
+app.get('/update', (req, res) => {
+    res.render("update", { response: "" });
+
+})
+app.get('/delete', (req, res) => {
+    res.render("delete", { response: { message: "" } });
+
+})
+app.get('/main', (req, res) => {
+    res.render("main", { response: { message: "" } });
+
+})
 app.get('/register', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     res.render("register", { response: "" });
@@ -69,13 +88,102 @@ app.post('/', (req, res) => {
     console.log("inside post /")
     var email = req.body.email;
     var password = req.body.password;
-    var que = "SELECT * FROM patient WHERE email='" + email + "' AND password='" + password + "'";
+    var que = "SELECT COUNT(*) AS count FROM patient WHERE email='" + email + "' AND password='" + password + "'";
+    db.query(que, function (err, result, fields) {
+        if (err) {
+            throw err;
+        }
+        else {
+            if (result[0].count == 0) {
+                res.render("index", { response: { name: "Login credentials are not correct" } });
+                return;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("main", { response: result });
+            }
+
+        }
+
+    });
+
+})
+
+app.post('/create', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    console.log(req.body);
+    var name = req.body.name;
+    var email = req.body.email;
+    var password = req.body.password;
+    var que = "INSERT INTO patient (name,email,password) VALUES ('" + name + "','" + email + "','" + password + "')";
     db.query(que, function (err, result, fields) {
         if (err) throw err;
 
         var json = JSON.stringify(result)
-        console.log(json);
-        res.render("main", { response: result });
+        res.render("create", { response: "record successfully inserted" });
+    });
+
+})
+app.post('/read', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    console.log("inside post /")
+    var id = req.body.name;
+    var que = "SELECT * FROM patient WHERE patient_id='" + id + "'";
+    db.query(que, function (err, result, fields) {
+        if (err) {
+            throw err;
+        }
+        else {
+
+            var json = JSON.stringify(result)
+            console.log(json);
+            res.render("read", { response: result });
+
+
+        }
+
+    });
+
+})
+app.post('/delete', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    console.log("inside post /")
+    var id = req.body.name;
+    var que = "DELETE FROM patient WHERE patient_id='" + id + "'";
+    db.query(que, function (err, result, fields) {
+        if (err) {
+            throw err;
+        }
+        else {
+
+            var json = JSON.stringify(result)
+            console.log(json);
+            res.render("delete", { response: { message: "record successful deleted" } });
+        }
+
+    });
+
+})
+app.post('/update', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    console.log("inside post /")
+    var id = req.body.id;
+    var name = req.body.name;
+    var email = req.body.email;
+    var password = req.body.password;
+    var que = "UPDATE patient SET email='" + email + "', password='" + password + "' ,name ='" + name + "' WHERE patient_id ='" + id + "'";
+    db.query(que, function (err, result, fields) {
+        if (err) {
+            throw err;
+        }
+        else {
+
+            var json = JSON.stringify(result)
+            console.log(json);
+            res.render("update", { response: { message: "record successful updated" } });
+        }
+
     });
 
 })
