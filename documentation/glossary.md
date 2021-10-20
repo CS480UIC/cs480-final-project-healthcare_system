@@ -199,3 +199,174 @@ Attributes:
   
   	payment_id: 1 - 1
 
+
+**Document dependent entities and dependency relationships**
+
+Dependent Entities: patient,feedback,mode_of_payment,doctor
+
+Dependency relationship: 
+  1)patient make mode_of_payment
+  
+  2)patient gives patient_feedback
+  
+  3)doctor partOf employee
+  
+  4)hospital  contains medicine
+  
+  5)hospital consists employee 
+  
+  6)patient visits hospital 
+
+
+
+
+**Document supertypes, subtypes, and partitions**
+
+Supertype and subtype relationship
+ * employee is a supertype of doctor entity
+ * patient is a supertype of patient feedback entity
+ * patient is a supertype of mode_of_payment entity
+
+partitions: there are no partitions 
+
+**Specify cascade and restrict actions for dependency relationships**
+
+patient on delete patient_feedback cascade
+patient on delete mode_of_payment cascade
+medicine on delete set null medicine_hospital
+
+
+
+**Specify cascade and restrict rules on foreign keys that implement dependency relationships**
+
+paymentid(FK) ->patientid  **on delete** cascade
+employeeid(FK) -> doctorid **on delete** cascade
+medicineid  -> hospitalid **on delete** set null
+
+
+
+**Implementing attribute type:**
+
+
+1)Entity: Patient
+
+Attribute Name: patient_id
+Type: INTEGER
+Description: Uniquely stores the patient records in a table
+
+Attribute Name: employee_id
+Type: INTEGER
+Description: Uniquely stores the employee records in a table
+
+Attribute Name: First_name
+Type: varchar(20)
+Description: First name specifies the string for the first name of the user.
+
+Attribute Name: last_name
+Type: varchar(20)
+Description: The last name specifies the string for the first name of the user.
+
+Attribute Name: Address
+Type: varchar(20)
+Description: specifies the address for the employee and patients
+
+Attribute Name: city
+Type: varchar(20)
+Description: Stores the city in which the registered user lives.
+
+Attribute Name: payment_id
+Type: INTEGER
+Description: Foreign key which connects to the mode_of_payment entity.
+
+
+2)Entity: Mode of payment
+
+Attribute Name: date_of_transaction
+Type: DATE
+Description: Specifies the date for the transactions 
+
+Attribute Name: type_of_payment
+Type: INTEGER
+Description: Specifies the payment typed opted by the user.
+
+Attribute Name: doc_referred
+Type: INTEGER
+Description: Specifies which doctor as referred the patient . 
+
+3)Entity: Medicine
+
+Attribute Name: medicine_name
+Type: INTEGER
+Description: Specifies the name of the medicine
+
+Attribute Name: price
+Type: INTEGER
+Description:Specifies the price of the medicine
+
+Attribute Name: expiry_term_year
+Type: DATE
+Description: Specifies the expiry year of medicine
+
+
+Attribute Name: medicine_id
+Type: INTEGER
+Description: medicine_id specifies the the particular id for that medicine
+
+
+4)Entity: Patient_feedback
+
+Attribute Name: date_of_feedback
+Type: DATE
+Description: Stores the date of the particular feedback of the patient.
+
+Attribute Name: review
+Type: VARCHAR
+Description: Stores the review of the patient
+
+
+5)Entity: Hospital
+
+Attribute Name: number_of_staff
+Type: INTEGER
+Description: specifies the staff number in the hospital
+
+Attribute Name: hospital_id
+Type: VARCHAR
+Description: each and every hospital will be having different id
+
+Attribute Name: name
+Type: varchar(20)
+Description: name specifies the string for the of the user.
+
+Attribute Name: medicine_id
+Type: INTEGER
+Description: medicine_id specifies the the particular id for that medicine
+
+
+6)Doctor
+
+Attribute Name: First_name
+Type: varchar(20)
+Description: First name specifies the string for the first name of the user.
+
+Attribute Name: last_name
+Type: varchar(20)
+Description: The last name specifies the string for the first name of the user.
+
+Attribute Name: Phone_no
+Type: LONG
+Description: Stores the phone number of the employee.
+
+Attribute Name: Pincode
+Type: Integer
+Description: 
+
+Attribute Name: hospital_id
+Type: INTEGER
+Description: Uniquely stores the hospital records in a table
+
+
+
+
+
+
