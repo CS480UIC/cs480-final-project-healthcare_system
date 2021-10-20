@@ -224,7 +224,9 @@ Dependency relationship:
 
 Supertype and subtype relationship
  * employee is a supertype of doctor entity
+ 
  * patient is a supertype of patient feedback entity
+ 
  * patient is a supertype of mode_of_payment entity
 
 partitions: there are no partitions 
@@ -232,7 +234,9 @@ partitions: there are no partitions
 **Specify cascade and restrict actions for dependency relationships**
 
 patient on delete patient_feedback cascade
+
 patient on delete mode_of_payment cascade
+
 medicine on delete set null medicine_hospital
 
 
@@ -240,7 +244,9 @@ medicine on delete set null medicine_hospital
 **Specify cascade and restrict rules on foreign keys that implement dependency relationships**
 
 paymentid(FK) ->patientid  **on delete** cascade
+
 employeeid(FK) -> doctorid **on delete** cascade
+
 medicineid  -> hospitalid **on delete** set null
 
 
