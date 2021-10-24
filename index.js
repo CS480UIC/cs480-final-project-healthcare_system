@@ -52,7 +52,7 @@ app.get('/delete', (req, res) => {
 
 })
 app.get('/main', (req, res) => {
-    res.render("main", { response: { message: "" } });
+    res.render("main", { response: { message: "wfwfw" } });
 
 })
 app.get('/register', (req, res) => {
@@ -100,8 +100,19 @@ app.post('/', (req, res) => {
             }
             else {
                 var json = JSON.stringify(result)
-                console.log(json);
-                res.render("main", { response: result });
+                var que = "SELECT * FROM patient WHERE email='" + email + "' AND password='" + password + "'";
+                db.query(que, function (err, result, fields) {
+
+
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    res.render("main", { response: result });
+
+
+
+
+                });
+
             }
 
         }
