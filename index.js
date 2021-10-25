@@ -107,10 +107,6 @@ app.post('/', (req, res) => {
                     var json = JSON.stringify(result)
                     console.log(json);
                     res.render("main", { response: result });
-
-
-
-
                 });
 
             }
