@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
         crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
@@ -12,7 +11,6 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
         crossorigin="anonymous">
-
 </head>
 
 <body class="container">
@@ -28,7 +26,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
+                    <a class="nav-link" href="main">Home
 
                     </a>
                 </li>
@@ -44,106 +42,79 @@
                 <li class="nav-item">
                     <a class="nav-link" href="update">Update</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Log out</a>
-                </li>
             </ul>
         </div>
     </nav>
 
-    <p>
-        Hi
-        <%= response[0].name %>
-    </p>
-    <div class="row">
+    <h2>Red Cross Hospital</h2>
 
-        <div class="col-md-7">
-            <div class="row">
-                <div class="form-outline">
-                    <input type="search" id="myInput" class="form-control" onkeyup="myFunction()" placeholder="Search for hospitals.." />
+    <div class="row">
+        <div class="col-md-6">
+            <ul id="ullist">
+                <div class="list-group">
+                    <li>
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Dr. John Becker</h5>
+
+                            </div>
+                            <p class="mb-1">Specialized as an Oncologist.</p>
+                            <small>Clinic times: 10:00AM - 9:00PM.</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Dr. Shally Mains</h5>
+
+                            </div>
+                            <p class="mb-1">Specialized as an Heart Surgeon.</p>
+                            <small>Clinic times: 10:00AM - 9:00PM.</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Dr. Shar Navy</h5>
+
+                            </div>
+                            <p class="mb-1">Specialized as an Pediatrician.</p>
+                            <small>Clinic times: 11:00AM - 9:30PM.</small>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Dr. Harry Goldman</h5>
+
+                            </div>
+                            <p class="mb-1">Specialized as an Pediatrician.</p>
+                            <small>Clinic times: 11:00AM - 9:30PM.</small>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">Dr. William Jacob</h5>
+
+                            </div>
+                            <p class="mb-1">Specialized as an Neurologist.</p>
+                            <small>Clinic times: 11:00AM - 9:00PM.</small>
+                        </a>
+                    </li>
                 </div>
-            </div>
-            <ul id="myUL" class="list-group">
-                <li class="list-group-item">
-                    <a href="hospital">Red Cross</a>
-                </li>
-                <li class="list-group-item">
-                    <a>Church Hill Hospital</a>
-                </li>
-                <li class="list-group-item">
-                    <a>Raymon brown hospital</a>
-                </li>
-                <li class="list-group-item">
-                    <a>UI Health</a>
-                </li>
-                <li class="list-group-item">
-                    <a>Urbana Champaign Medical Center</a>
-                </li>
             </ul>
         </div>
-        <div class="col-md-5">
-            <div class="list-group">
-                <div class="card" style="width: 35rem;">
 
-                    <div class="card-body">
-                        <div class="card-body">
-                            <h5 class="card-title">Medicines</h5>
-                            <h6 class="card-subtitle mb-2 text-muted">Get information about common medicines</h6>
-                            <p class="card-text">To get the right treatment at the right time..</p>
-                            <a href="#" class="card-link">More infok</a>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
+        <div class="col-md-6">
+            <p id="heading"></p>
         </div>
     </div>
-    <p></p>
 
-    <div class="row" style="align-content: center;">
-        <div class="col-md-4">
-            <div class="card" style="width: 23rem;">
-                <img class="card-img-top" src="https://www.healthcareitnews.com/sites/hitn/files/SensoroArticleImage.jpg" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Book appointments</h5>
-                    <p class="card-text">Online book appointments to minimize the wait times in different hospitals and avoid crowds.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-4">
-            <a href="covid">
-                <div class="card" style="width: 23rem;">
-                    <img class="card-img-top" src="https://www.boardeffect.com/wp-content/uploads/2019/06/The-Role-of-Governance-in-Healthcare.jpg"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">COVID Information</h5>
-                        <p class="card-text">Latest updates about the COVID delta variant the precautions necessary to keep yourself and others
-                            secure.
-                        </p>
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                </div>
-            </a>
-        </div>
-
-        <div class="col-md-4">
-            <div class="card" style="width: 23rem;">
-                <img class="card-img-top" src="https://schweikert.house.gov/sites/schweikert.house.gov/files/featured_image/issues/Healthcare.jpg"
-                    alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">Feedback forms</h5>
-                    <p class="card-text">Give quick feedbacks to doctors and hospitals which you have visited for helping other users.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-    </div>
     <br />
-    <!-- footer code-->
+
     <footer class="bg-dark text-center text-white">
         <!-- Grid container -->
         <div class="container p-4">
@@ -293,29 +264,17 @@
         </div>
 
     </footer>
-    <script>
-        function myFunction() {
-            // Declare variables
-            var input, filter, ul, li, a, i, txtValue;
-            input = document.getElementById('myInput');
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName('li');
 
-            // Loop through all list items, and hide those who don't match the search query
-            for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
-                txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
+
+    <script>
+        var ul = document.getElementById('ullist');  // Parent
+
+        ul.addEventListener('click', function (e) {
+            if (e.target.tagName === 'a') {
+                alert(e.target.id);  // Check if the element is a LI
             }
-        }
+        });
     </script>
 </body>
-
-
 
 </html>

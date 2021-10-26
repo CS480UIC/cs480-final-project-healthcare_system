@@ -39,6 +39,14 @@ app.get('/create', (req, res) => {
     res.render("create", { response: "" });
 
 })
+app.get('/hospital', (req, res) => {
+    res.render("hospital", { response: { name: "" } });
+
+})
+app.get('/covid', (req, res) => {
+    res.render("covid", { response: { name: "" } });
+
+})
 app.get('/read', (req, res) => {
     res.render("read", { response: [{}] });
 
