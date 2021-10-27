@@ -57,11 +57,56 @@ app.get('/hospital/read', (req, res) => {
 
 })
 
+//patientfeedback
+
+app.get('/patientfeedback/patientfeedback', (req, res) => {
+    res.render("patientfeedback/patientfeedback", { response: { name: "" } });
+
+})
+app.get('/patientfeedback/create', (req, res) => {
+    res.render("patientfeedback/create", { response: { name: "" } });
+
+})
+app.get('/patientfeedback/update', (req, res) => {
+    res.render("patientfeedback/update", { response: { name: "" } });
+
+})
+app.get('/patientfeedback/delete', (req, res) => {
+    res.render("patientfeedback/delete", { response: { name: "" } });
+
+})
+app.get('/patientfeedback/read', (req, res) => {
+    res.render("patientfeedback/read", { response: { name: "" } });
+
+})
+
+//patient
+
+app.get('/patient/patient', (req, res) => {
+    res.render("patient/patient", { response: { name: "" } });
+
+})
+app.get('/patient/create', (req, res) => {
+    res.render("patient/create", { response: { name: "" } });
+
+})
+app.get('/patient/update', (req, res) => {
+    res.render("patient/update", { response: { name: "" } });
+
+})
+app.get('/patient/delete', (req, res) => {
+    res.render("patient/delete", { response: { name: "" } });
+
+})
+app.get('/patient/read', (req, res) => {
+    res.render("patient/read", { response: { name: "" } });
+
+})
 
 
 // connecing to localhost
-app.listen(3000, () => {
-    console.log('server started port  3000');
+app.listen(5000, () => {
+    console.log('server started port  5000');
 })
 app.set("view engine", "ejs");
 
