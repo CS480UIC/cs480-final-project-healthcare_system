@@ -10,6 +10,11 @@ var routes = Router()
 app.use(express.urlencoded());
 app.use(express.json());
 
+app.get('/', (req, res) => {
+    res.render("index", { response: { name: "" } });
+
+})
+
 app.listen(3000, () => {
     console.log('server started port  3000');
 })
@@ -21,5 +26,4 @@ const db = mysql.createConnection({
     password: 'password',
     database: 'healthcare_system'
 });
-
 
