@@ -23,8 +23,8 @@ The project is integrated with a database named healthcare_system. It helps in p
 
 
 ## CRUD for patient_feedback
-![main patient](/screenshot/patientfeedback_main.png?raw=true)
-![create patient](/screenshot/patientfeedback_create.png?raw=true)
-![delete patient](/screenshot/patientfeedback_delete.png?raw=true)
-![read patient](/screenshot/patientfeedback_read.png?raw=true)
-![update patient](/screenshot/patientfeedback_update.png?raw=true)
+![main patientfeedback](/screenshot/patientfeedback_main.png?raw=true)
+![create patientfeedback](/screenshot/patientfeedback_create.png?raw=true)
+![delete patientfeedback](/screenshot/patientfeedback_delete.png?raw=true)
+![read patientfeedback](/screenshot/patientfeedback_read.png?raw=true)
+![update patientfeedback](/screenshot/patientfeedback_update.png?raw=true)
