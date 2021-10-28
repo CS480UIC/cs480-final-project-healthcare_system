@@ -103,10 +103,32 @@ app.get('/patient/read', (req, res) => {
 
 })
 
+//doctor
+app.get('/doctor/doctor', (req, res) => {
+    res.render("doctor/doctor", { response: { name: "" } });
+
+})
+app.get('/doctor/create', (req, res) => {
+    res.render("doctor/create", { response: { name: "" } });
+
+})
+app.get('/doctor/update', (req, res) => {
+    res.render("doctor/update", { response: { name: "" } });
+
+})
+app.get('/doctor/delete', (req, res) => {
+    res.render("doctor/delete", { response: { name: "" } });
+
+})
+app.get('/doctor/read', (req, res) => {
+    res.render("doctor/read", { response: { name: "" } });
+
+})
+
 
 // connecing to localhost
-app.listen(5000, () => {
-    console.log('server started port  5000');
+app.listen(3000, () => {
+    console.log('server started port  3000');
 })
 app.set("view engine", "ejs");
 
