@@ -27,4 +27,4 @@ The project is integrated with a database named healthcare_system. It helps in p
 ![create patientfeedback](/screenshot/patientfeedback_create.png?raw=true)
 ![delete patientfeedback](/screenshot/patientfeedback_delete.png?raw=true)
 ![read patientfeedback](/screenshot/patientfeedback_read.png?raw=true)
-![update patientfeedback](/screenshot/patientfeedback_update.png?raw=true)
+![update patientfeedback](/screenshot/patient_feedback_update.png?raw=true)
