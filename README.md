@@ -15,6 +15,7 @@ The project is integrated with a database named healthcare_system. It helps in p
 ## Screenshots:
 
 ## CRUD for patient
+![main patient](/screenshot/patient_main.png?raw=true)
 ![create patient](/screenshot/create_patient.png?raw=true)
 ![delete patient](/screenshot/delete_patient.png?raw=true)
 ![read patient](/screenshot/read_patient.png?raw=true)
