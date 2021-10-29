@@ -13,6 +13,10 @@ The project is integrated with a database named healthcare_system. It helps in p
 
 
 ## Screenshots:
+
+## CRUD for All_Entities
+![main hospital](/screenshot/all_entities.png?raw=true)
+
 ## CRUD for hospital
 ![main hospital](/screenshot/hospital_main.png?raw=true)
 ![create hospital](/screenshot/hospital_create.png?raw=true)
@@ -33,6 +37,13 @@ The project is integrated with a database named healthcare_system. It helps in p
 ![delete hospital](/screenshot/employee_delete.png?raw=true)
 ![read hospital](/screenshot/employee_read.png?raw=true)
 ![update hospital](/screenshot/employee_update.png?raw=true)
+
+## CRUD for doctor
+![main doctor](/screenshot/doctor_main.png?raw=true)
+![create doctor](/screenshot/doctor_create.png?raw=true)
+![delete doctor](/screenshot/doctor_delete.png?raw=true)
+![read doctor](/screenshot/doctor_read.png?raw=true)
+![update doctor](/screenshot/doctor_update.png?raw=true)
 
 ## CRUD for patient_feedback
 ![main patientfeedback](/screenshot/patientfeedback_main.png?raw=true)
