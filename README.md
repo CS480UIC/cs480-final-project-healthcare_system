@@ -59,3 +59,11 @@ The project is integrated with a database named healthcare_system. It helps in p
 ![delete medicine](/screenshot/medicine_delete.png?raw=true)
 ![read medicine](/screenshot/medicine_read.png?raw=true)
 ![update medicine](/screenshot/medicine_update.png?raw=true)
+
+
+## CRUD for modeofpayment
+![main modeofpayment](/screenshot/modeofpayment_main.png?raw=true)
+![create modeofpayment](/screenshot/modeofpayment_create.png?raw=true)
+![delete modeofpayment](/screenshot/modeofpayment_delete.png?raw=true)
+![read modeofpayment](/screenshot/modeofpayment_read.png?raw=true)
+![update modeofpayment](/screenshot/modeofpayment_update.png?raw=true)
