@@ -51,3 +51,11 @@ The project is integrated with a database named healthcare_system. It helps in p
 ![delete patientfeedback](/screenshot/patientfeedback_delete.png?raw=true)
 ![read patientfeedback](/screenshot/patientfeedback_read.png?raw=true)
 ![update patientfeedback](/screenshot/patient_feedback_update.png?raw=true)
+
+
+## CRUD for medicine
+![main medicine](/screenshot/medicine_main.png?raw=true)
+![create medicine](/screenshot/medicine_create.png?raw=true)
+![delete medicine](/screenshot/medicine_delete.png?raw=true)
+![read medicine](/screenshot/medicine_read.png?raw=true)
+![update medicine](/screenshot/medicine_update.png?raw=true)
