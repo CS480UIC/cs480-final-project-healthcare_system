@@ -27,6 +27,12 @@ The project is integrated with a database named healthcare_system. It helps in p
 ![read patient](/screenshot/patient_read.png?raw=true)
 ![update patient](/screenshot/patient_update.png?raw=true)
 
+## CRUD for employee
+![main hospital](/screenshot/employee_main.png?raw=true)
+![create hospital](/screenshot/employee_create.png?raw=true)
+![delete hospital](/screenshot/employee_delete.png?raw=true)
+![read hospital](/screenshot/employee_read.png?raw=true)
+![update hospital](/screenshot/employee_update.png?raw=true)
 
 ## CRUD for patient_feedback
 ![main patientfeedback](/screenshot/patientfeedback_main.png?raw=true)
