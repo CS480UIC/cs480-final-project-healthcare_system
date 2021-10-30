@@ -66,10 +66,10 @@ app.listen(3000, () => {
 app.set("view engine", "ejs");
 
 const db = mysql.createConnection({
-    user: 'root',
-    host: 'localhost',
-    password: 'password',
-    database: 'healthcare_system'
+    host: '127.0.0.1',
+    user: 'healthcare',
+    password: 'health',
+    database: 'health_care'
 });
 
 
