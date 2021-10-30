@@ -57,7 +57,117 @@ app.get('/hospital/read', (req, res) => {
 
 })
 
+//patientfeedback
 
+app.get('/patientfeedback/patientfeedback', (req, res) => {
+    res.render("patientfeedback/patientfeedback", { response: { name: "" } });
+
+})
+app.get('/patientfeedback/create', (req, res) => {
+    res.render("patientfeedback/create", { response: { name: "" } });
+
+})
+app.get('/patientfeedback/update', (req, res) => {
+    res.render("patientfeedback/update", { response: { name: "" } });
+
+})
+app.get('/patientfeedback/delete', (req, res) => {
+    res.render("patientfeedback/delete", { response: { name: "" } });
+
+})
+app.get('/patientfeedback/read', (req, res) => {
+    res.render("patientfeedback/read", { response: { name: "" } });
+
+})
+
+//patient
+
+app.get('/patient/patient', (req, res) => {
+    res.render("patient/patient", { response: { name: "" } });
+
+})
+app.get('/patient/create', (req, res) => {
+    res.render("patient/create", { response: { name: "" } });
+
+})
+app.get('/patient/update', (req, res) => {
+    res.render("patient/update", { response: { name: "" } });
+
+})
+app.get('/patient/delete', (req, res) => {
+    res.render("patient/delete", { response: { name: "" } });
+
+})
+app.get('/patient/read', (req, res) => {
+    res.render("patient/read", { response: { name: "" } });
+
+})
+
+//doctor
+app.get('/doctor/doctor', (req, res) => {
+    res.render("doctor/doctor", { response: { name: "" } });
+
+})
+app.get('/doctor/create', (req, res) => {
+    res.render("doctor/create", { response: { name: "" } });
+
+})
+app.get('/doctor/update', (req, res) => {
+    res.render("doctor/update", { response: { name: "" } });
+
+})
+app.get('/doctor/delete', (req, res) => {
+    res.render("doctor/delete", { response: { name: "" } });
+
+})
+app.get('/doctor/read', (req, res) => {
+    res.render("doctor/read", { response: { name: "" } });
+
+})
+
+// Medicine routes
+app.get('/medicine/medicine', (req, res) => {
+    res.render("medicine/medicine", { response: { name: "" } });
+
+})
+app.get('/medicine/create', (req, res) => {
+    res.render("medicine/create", { response: { name: "" } });
+
+})
+app.get('/medicine/update', (req, res) => {
+    res.render("medicine/update", { response: { name: "" } });
+
+})
+app.get('/medicine/delete', (req, res) => {
+    res.render("medicine/delete", { response: { name: "" } });
+
+})
+app.get('/medicine/read', (req, res) => {
+    res.render("medicine/read", { response: { name: "" } });
+
+})
+
+//payment routes
+app.get('/payment/payment', (req, res) => {
+    res.render("payment/payment", { response: { name: "" } });
+
+})
+app.get('/payment/create', (req, res) => {
+    res.render("payment/create", { response: { name: "" } });
+
+})
+app.get('/payment/update', (req, res) => {
+    res.render("payment/update", { response: { name: "" } });
+
+})
+app.get('/payment/delete', (req, res) => {
+    res.render("payment/delete", { response: { name: "" } });
+
+})
+app.get('/payment/read', (req, res) => {
+    res.render("payment/read", { response: { name: "" } });
+
+})
 
 // connecing to localhost
 app.listen(3000, () => {
