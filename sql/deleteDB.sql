@@ -11,3 +11,5 @@ DROP TABLE IF EXISTS `mode_of_payment`;
 DROP TABLE IF EXISTS `patient`;
 
 DROP TABLE IF EXISTS `patient_feedback`;
+
+
