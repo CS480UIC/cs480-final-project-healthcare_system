@@ -1,0 +1,6 @@
+﻿patient_id,employee_id,feedback,patient_name,date_of_feedback
+1,1,Very good treatment,john,3/12/20
+2,3,Very good treatment,karl,3/12/20
+3,3,The treatment was done correctly.,karen,3/12/20
+4,4,Very good treatment,pranavi,3/12/20
+5,5,Very good treatment,hiral,3/12/20

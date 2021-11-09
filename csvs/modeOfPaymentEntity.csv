@@ -1,0 +1,6 @@
+﻿payment_id,type_of_payment,doc_referred,date_of_transaction
+1,credit card,john mason,12/11/20
+21,cash,XYZ,2/7/21
+5,debit card,Hiral,9/8/21
+2,cash,john mason,12/12/20
+3,credit card,john mason,12/21/20
