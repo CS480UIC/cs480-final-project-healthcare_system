@@ -1,5 +1,5 @@
 
-CREATE VIEW employeeView as SELECT * FROM healthcare_system.employee where salary > 50000 order by country;
+    CREATE VIEW employeeView as SELECT * FROM healthcare_system.employee where salary > 50000 order by country;
 
 
 CREATE VIEW doctorView as SELECT * FROM healthcare_system.doctor where city = "Chicago" order by country;
