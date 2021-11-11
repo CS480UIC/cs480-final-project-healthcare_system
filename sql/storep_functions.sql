@@ -1,4 +1,4 @@
-USE `healthcare_system`;;
+USE `healthcare_system`;
 DROP procedure IF EXISTS `patient`;
 
 DELIMITER $$
