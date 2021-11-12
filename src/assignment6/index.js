@@ -15,6 +15,14 @@ app.get('/', (req, res) => {
 
 })
 // Employee routes
+
+
+app.get('/intialize/intialize', (req, res) => {
+    res.render("intialize/intialize", { response: { name: "" } });
+
+})
+
+
 app.get('/employee/employee', (req, res) => {
     res.render("employee/employee", { response: { name: "" } });
 
@@ -33,6 +41,27 @@ app.get('/employee/delete', (req, res) => {
 })
 app.get('/employee/read', (req, res) => {
     res.render("employee/read", { response: { name: "" } });
+
+})
+// Medicine routes
+app.get('/medicine/medicine', (req, res) => {
+    res.render("medicine/medicine", { response: { name: "" } });
+
+})
+app.get('/medicine/create', (req, res) => {
+    res.render("medicine/create", { response: { name: "" } });
+
+})
+app.get('/medicine/update', (req, res) => {
+    res.render("medicine/update", { response: { name: "" } });
+
+})
+app.get('/medicine/delete', (req, res) => {
+    res.render("medicine/delete", { response: { name: "" } });
+
+})
+app.get('/medicine/read', (req, res) => {
+    res.render("medicine/read", { response: { name: "" } });
 
 })
 // Hospital routes
@@ -124,7 +153,32 @@ app.get('/doctor/read', (req, res) => {
     res.render("doctor/read", { response: { name: "" } });
 
 })
+//modeofpayment
 
+app.get('/modeofpayment/modeofpayment', (req, res) => {
+    res.render("modeofpayment/modeofpayment", { response: { name: "" } });
+
+})
+app.get('/modeofpayment/create', (req, res) => {
+    res.render("modeofpayment/create", { response: { name: "" } });
+
+})
+app.get('/modeofpayment/update', (req, res) => {
+    res.render("modeofpayment/update", { response: { name: "" } });
+
+})
+app.get('/modeofpayment/delete', (req, res) => {
+    res.render("modeofpayment/delete", { response: { name: "" } });
+
+})
+app.get('/modeofpayment/read', (req, res) => {
+    res.render("modeofpayment/read", { response: { name: "" } });
+
+})
+app.get('/intialize/intialize', (req, res) => {
+    res.render("intialize/intialize", { response: { name: "" } });
+
+})
 
 // connecing to localhost
 app.listen(3000, () => {
@@ -132,11 +186,121 @@ app.listen(3000, () => {
 })
 app.set("view engine", "ejs");
 
+
 const db = mysql.createConnection({
-    user: 'root',
+    user: 'rrr',
     host: 'localhost',
-    password: 'password',
-    database: 'healthcare_system'
+    password: 'PASS',
+    database: 'bookstore'
 });
 
+app.post('/intialize/intialize', (req, res) => {
+db.connect(function(err) {
+    if (err) throw err;
+    console.log("Connected!");
+    var sql="DROP TABLE IF EXISTS data";
+    var sql1 = "CREATE TABLE data (name VARCHAR(255), address VARCHAR(255))";
+    db.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("table dropped");
+    });
+    db.query(sql1, function (err, result) {
+        if (err) throw err;
+        console.log("Table created");
+      });
+  });
+})
 
+/*app.get('/intialize', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    res.render("/intialize/intialize", { response: "" });
+    db.query(" CREATE TABLE TEST(ID int);", function (err, result, fields) {
+          if (err) throw err;
+          var json = JSON.stringify(result)
+          res.render("/intialize", { response: json });
+      });
+
+})
+
+
+
+
+
+
+
+app.get('/register', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    res.render("register", { response: "" });
+    /*  db.query("SELECT * FROM patient", function (err, result, fields) {
+          if (err) throw err;
+          var json = JSON.stringify(result)
+          res.render("register", { response: json });
+      });
+
+})
+
+app.post('/intialize', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+
+    console.log(req.body);
+    var que = "CREATE TABLE TEST(ID int);";
+    db.query(que, function (err, result, fields) {
+        if (err) throw err;
+
+        var json = JSON.stringify(result)
+        res.render("intialize", { response: "record successfully inserted" });
+    });
+
+})
+
+app.post('/', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    console.log("inside post /")
+    var email = req.body.email;
+    var password = req.body.password;
+    var que = "SELECT COUNT(*) AS count FROM patient WHERE email='" + email + "' AND password='" + password + "'";
+    db.query(que, function (err, result, fields) {
+        if (err) {
+            throw err;
+        }
+        else {
+            if (result[0].count == 0) {
+                res.render("index", { response: { name: "Login credentials are not correct" } });
+                return;
+            }
+            else {
+                var json = JSON.stringify(result)
+                var que = "SELECT * FROM patient WHERE email='" + email + "' AND password='" + password + "'";
+                db.query(que, function (err, result, fields) {
+
+
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    res.render("main", { response: result });
+                });
+
+            }
+
+        }
+
+    });
+
+})
+
+app.post('/create', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    console.log(req.body);
+    var name = req.body.name;
+    var email = req.body.email;
+    var password = req.body.password;
+    var que = "INSERT INTO patient (name,email,password) VALUES ('" + name + "','" + email + "','" + password + "')";
+    db.query(que, function (err, result, fields) {
+        if (err) throw err;
+
+        var json = JSON.stringify(result)
+        res.render("create", { response: "record successfully inserted" });
+    });
+
+})
+
+module.exports = db;*/
