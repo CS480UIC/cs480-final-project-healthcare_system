@@ -13,6 +13,10 @@ The project is integrated with a database named healthcare_system. It helps in p
 
 
 ## Screenshots:
+
+## CRUD for All_Entities
+![main hospital](/screenshot/all_entities.png?raw=true)
+
 ## CRUD for hospital
 ![main hospital](/screenshot/hospital_main.png?raw=true)
 ![create hospital](/screenshot/hospital_create.png?raw=true)
@@ -34,9 +38,32 @@ The project is integrated with a database named healthcare_system. It helps in p
 ![read hospital](/screenshot/employee_read.png?raw=true)
 ![update hospital](/screenshot/employee_update.png?raw=true)
 
+## CRUD for doctor
+![main doctor](/screenshot/doctor_main.png?raw=true)
+![create doctor](/screenshot/doctor_create.png?raw=true)
+![delete doctor](/screenshot/doctor_delete.png?raw=true)
+![read doctor](/screenshot/doctor_read.png?raw=true)
+![update doctor](/screenshot/doctor_update.png?raw=true)
+
 ## CRUD for patient_feedback
 ![main patientfeedback](/screenshot/patientfeedback_main.png?raw=true)
 ![create patientfeedback](/screenshot/patientfeedback_create.png?raw=true)
 ![delete patientfeedback](/screenshot/patientfeedback_delete.png?raw=true)
 ![read patientfeedback](/screenshot/patientfeedback_read.png?raw=true)
 ![update patientfeedback](/screenshot/patient_feedback_update.png?raw=true)
+
+
+## CRUD for medicine
+![main medicine](/screenshot/medicine_main.png?raw=true)
+![create medicine](/screenshot/medicine_create.png?raw=true)
+![delete medicine](/screenshot/medicine_delete.png?raw=true)
+![read medicine](/screenshot/medicine_read.png?raw=true)
+![update medicine](/screenshot/medicine_update.png?raw=true)
+
+
+## CRUD for modeofpayment
+![main modeofpayment](/screenshot/modeofpayment_main.png?raw=true)
+![create modeofpayment](/screenshot/modeofpayment_create.png?raw=true)
+![delete modeofpayment](/screenshot/modeofpayment_delete.png?raw=true)
+![read modeofpayment](/screenshot/modeofpayment_read.png?raw=true)
+![update modeofpayment](/screenshot/modeofpayment_update.png?raw=true)
