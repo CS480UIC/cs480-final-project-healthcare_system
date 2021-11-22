@@ -96,7 +96,7 @@ app.post('/', (req, res) => {
     console.log("inside post /")
     var email = req.body.email;
     var password = req.body.password;
-    var que = "SELECT COUNT(*) AS count FROM patient WHERE email='" + email + "' AND password='" + password + "'";
+    var que = "SELECT COUNT(*) AS count FROM patient WHERE username='" + email + "' AND password='" + password + "'";
     db.query(que, function (err, result, fields) {
         if (err) {
             throw err;
@@ -108,7 +108,7 @@ app.post('/', (req, res) => {
             }
             else {
                 var json = JSON.stringify(result)
-                var que = "SELECT * FROM patient WHERE email='" + email + "' AND password='" + password + "'";
+                var que = "SELECT * FROM patient WHERE username='" + email + "' AND password='" + password + "'";
                 db.query(que, function (err, result, fields) {
 
 
