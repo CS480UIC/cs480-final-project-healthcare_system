@@ -60,8 +60,10 @@ app.get('/delete', (req, res) => {
 
 })
 app.get('/main', (req, res) => {
-    res.render("main", { response: { message: "wfwfw" } });
+    res.render("main", { response: [], hospital: [] });
+    var first_name = req[0].first_name;
 
+    console.log(first_name);
 })
 app.get('/register', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
@@ -109,12 +111,21 @@ app.post('/', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 var que = "SELECT * FROM patient WHERE username='" + email + "' AND password='" + password + "'";
+                var que1 = "SELECT name FROM hospital";
+                var r1;
+                db.query(que1, function (err, result, fields) {
+
+
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    r1 = result;
+                });
                 db.query(que, function (err, result, fields) {
 
 
                     var json = JSON.stringify(result)
                     console.log(json);
-                    res.render("main", { response: result });
+                    res.render("main", { response: result, hospital: r1 });
                 });
 
             }

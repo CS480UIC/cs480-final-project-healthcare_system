@@ -53,7 +53,7 @@
 
     <p>
         Hi
-        <%= response[0].name %>
+        <%= response[0].first_name %>
     </p>
     <div class="row">
 
@@ -65,19 +65,29 @@
             </div>
             <ul id="myUL" class="list-group">
                 <li class="list-group-item">
-                    <a href="hospital">Red Cross</a>
+                    <a href="hospital">
+                        <%= hospital[0].name %>
+                    </a>
                 </li>
                 <li class="list-group-item">
-                    <a>Church Hill Hospital</a>
+                    <a>
+                        <%= hospital[1].name %>
+                    </a>
                 </li>
                 <li class="list-group-item">
-                    <a>Raymon brown hospital</a>
+                    <a>
+                        <%= hospital[2].name %>
+                    </a>
                 </li>
                 <li class="list-group-item">
-                    <a>UI Health</a>
+                    <a>
+                        <%= hospital[3].name %>
+                    </a>
                 </li>
                 <li class="list-group-item">
-                    <a>Urbana Champaign Medical Center</a>
+                    <a>
+                        <%= hospital[4].name %>
+                    </a>
                 </li>
             </ul>
         </div>
