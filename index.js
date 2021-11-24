@@ -44,15 +44,26 @@ app.get('/hospital', (req, res) => {
 
 })
 app.get('/hospital/:id', (req, res) => {
-    console.log(req.params.id);
+    var id = req.params.id;
+    console.log(id);
+
+    /*var que = "SELECT * FROM hospital WHERE hospital_id = " + id;
+    db.query(que, function (err, result, fields) {
+        if (err) throw err;
+
+        var json = JSON.stringify(result)
+        console.log(json);
+        res.render("hospital", { response: result });
+    });*/
+
     res.render("hospital", { response: { name: "" } });
 })
 app.get('/covid', (req, res) => {
     res.render("covid", { response: { name: "" } });
 
 })
-app.get('/read', (req, res) => {
-    res.render("read", { response: [{}] });
+app.get('/patient', (req, res) => {
+    res.render("patient", { response: [{}] });
 
 })
 app.get('/update', (req, res) => {
@@ -156,25 +167,45 @@ app.post('/create', (req, res) => {
     });
 
 })
-app.post('/read', (req, res) => {
+app.post('/patient', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     console.log("inside post /")
     var id = req.body.name;
-    var que = "SELECT * FROM patient WHERE patient_id='" + id + "'";
-    db.query(que, function (err, result, fields) {
-        if (err) {
-            throw err;
-        }
-        else {
+    if (id != null) {
+        var que = "SELECT * FROM patient WHERE patient_id='" + id + "'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
 
-            var json = JSON.stringify(result)
-            console.log(json);
-            res.render("read", { response: result });
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("patient", { response: result });
 
 
-        }
+            }
 
-    });
+        });
+    }
+    else {
+        var que = "SELECT * FROM patient";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("patient", { response: result });
+
+
+            }
+
+        });
+    }
+
 
 })
 app.post('/delete', (req, res) => {
