@@ -43,6 +43,10 @@ app.get('/hospital', (req, res) => {
     res.render("hospital", { response: { name: "" } });
 
 })
+app.get('/hospital/:id', (req, res) => {
+    console.log(req.params.id);
+    res.render("hospital", { response: { name: "" } });
+})
 app.get('/covid', (req, res) => {
     res.render("covid", { response: { name: "" } });
 
@@ -92,6 +96,7 @@ app.post('/register', (req, res) => {
     });
 
 })
+
 
 app.post('/', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
