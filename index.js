@@ -52,6 +52,10 @@ app.get('/doctor', (req, res) => {
     res.render("doctor", { response: [{}] });
 
 })
+app.get('/employee', (req, res) => {
+    res.render("employee", { response: [{}] });
+
+})
 app.get('/modeofpayment', (req, res) => {
     res.render("modeofpayment", { response: [{}] });
 
@@ -601,6 +605,95 @@ app.post('/doctor', (req, res) => {
         });
     }
 })
+
+// employee
+
+
+app.post('/employee', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    if (req.body.readall != null) {
+
+        var que = "SELECT * FROM employee";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("employee", { response: result });
+            }
+        });
+    }
+    else if (req.body.deleteidmedicine != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "DELETE FROM employee where employee_id = " + id;
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("employee", { response: result });
+            }
+        });
+    }
+    else if (req.body.updateid != null) {
+        var id = req.body.updateid;
+        var first_name = req.body.first_name;
+        var last_name = req.body.last_name;
+        var address = req.body.address;
+        var email = req.body.email;
+        var city = req.body.city;
+        var country = req.body.country;
+        var description = req.body.description;
+        var hospital_name = req.body.hospital_name;
+        var salary = req.body.salary;
+        var type_of_employement = req.body.type_of_employement;
+        var hospital_id = req.body.hospital_id;
+
+        var que = "UPDATE employee SET first_name = '" + first_name + "' , last_name = '" + last_name + "', address = '" + address + "', email= '" + email + "', city= '" + city + "', country = '" + country + "', description = '" + description + "', hospital_name = '" + hospital_name + "',salary = '" + salary + "', type_of_employment = '" + type_of_employement + "', hospital_id = '" + hospital_id + "' WHERE employee_id = '" + id + "'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("employee", { response: result });
+            }
+        });
+    }
+    else {
+        var first_name = req.body.first_name;
+        var last_name = req.body.last_name;
+        var address = req.body.address;
+        var email = req.body.email;
+        var city = req.body.city;
+        var country = req.body.country;
+        var description = req.body.description;
+        var hospital_name = req.body.hospital_name;
+        var salary = req.body.salary;
+        var type_of_employement = req.body.type_of_employement;
+        var hospital_id = req.body.hospital_id;
+
+
+        var que = "INSERT INTO employee (first_name,last_name, address,email,city,country,description,hospital_name, salary, type_of_employment,hospital_id) VALUES ('" + first_name + "','" + last_name + "','" + address + "', '" + email + "' , '" + city + "','" + country + "', '" + description + "','" + hospital_name + "','" + salary + "','" + type_of_employement + "','" + hospital_id + "')";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("employee", { response: result });
+            }
+        });
+    }
+})
+
 app.post('/delete', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     console.log("inside post /")
@@ -620,6 +713,10 @@ app.post('/delete', (req, res) => {
     });
 
 })
+
+
+
+
 app.post('/update', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     console.log("inside post /")
