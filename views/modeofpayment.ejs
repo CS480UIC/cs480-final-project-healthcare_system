@@ -29,42 +29,32 @@
                 <li class="nav-item">
                     <a class="nav-link" href="create">Create</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="read">Read</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="delete">Delete</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="update">Update</a>
-                </li>
+
             </ul>
         </div>
     </nav>
+    <h3>Mode of payment</h3>
     <div class="row">
         <div class="col-md-6">
             <h2>Update record</h2>
-            <form action="/medicine" method="post">
+            <form action="/modeofpayment" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">ID:</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="updateid">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Name:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+                    <label for="exampleInputEmail1">Type of payment:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="typeofpayment">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Price:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price">
+                    <label for="exampleInputEmail1">Doctor referred:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="docreferred">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Expiry Date:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="expiry">
+                    <label for="exampleInputEmail1">Date of transaction:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="dateoftransaction">
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail1">hospital_id:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="hospital">
-                </div>
+
 
                 <button type="submit" class="btn btn-primary">INSERT</button>
             </form>
@@ -72,10 +62,10 @@
 
             <h2>Delete a record</h2>
             <br/>
-            <form action="/medicine" method="post">
+            <form action="/modeofpayment" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Enter the ID:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="deleteidmedicine">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="deleteidpayment">
                 </div>
                 <button type="submit" class="btn btn-primary">Delete</button>
             </form>
@@ -84,23 +74,20 @@
             <br />
             <div class="col-md-6">
                 <h2>Create a record</h2>
-                <form action="/medicine" method="post">
+                <form action="/modeofpayment" method="post">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Name:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name">
+                        <label for="exampleInputEmail1">Type of payment:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="typeofpayment">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Price:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="price">
+                        <label for="exampleInputEmail1">Doctor referred:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="docreferred">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Expiry Date:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="expiry">
+                        <label for="exampleInputEmail1">Date of Transaction:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="dateoftransaction">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">hospital_id:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="hospital">
-                    </div>
+
 
                     <button type="submit" class="btn btn-primary">INSERT</button>
                 </form>
@@ -108,7 +95,7 @@
             <div class="col-md-6">
 
                 <h2>Read all record</h2>
-                <form action="/medicine" method="post">
+                <form action="/modeofpayment" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1"></label>
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall">
@@ -125,16 +112,13 @@
                                         <%=i; %>
                                     </td>
                                     <td>
-                                        <%=data.medicine_name %>
+                                        <%=data.type_of_payment %>
                                     </td>
                                     <td>
-                                        <%=data.price %>
+                                        <%=data.doc_referred %>
                                     </td>
                                     <td>
-                                        <%=data.expiry_term_year %>
-                                    </td>
-                                    <td>
-                                        <%=data.hospital_id %>
+                                        <%=data.date_of_transaction %>
                                     </td>
 
                                 </tr>

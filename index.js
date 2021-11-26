@@ -47,6 +47,10 @@ app.get('/medicine', (req, res) => {
     res.render("medicine", { response: [{}] });
 
 })
+app.get('/modeofpayment', (req, res) => {
+    res.render("modeofpayment", { response: [{}] });
+
+})
 app.get('/hospital/:id', (req, res) => {
     var id = req.params.id;
     console.log(id);
@@ -74,6 +78,7 @@ app.get('/update', (req, res) => {
     res.render("update", { response: "" });
 
 })
+
 app.get('/delete', (req, res) => {
     res.render("delete", { response: { message: "" } });
 
@@ -359,6 +364,77 @@ app.post('/medicine', (req, res) => {
 
 
 })
+
+// mode of payment
+
+app.post('/modeofpayment', (req, res) => {
+    if (req.body.readall != null) {
+
+        var que = "SELECT * FROM mode_of_payment";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("modeofpayment", { response: result });
+            }
+        });
+    }
+    else if (req.body.deleteidmedicine != null) {
+        var id = parseInt(req.body.deleteidpayment);
+
+        var que = "DELETE FROM mode_of_payment where payment_id = " + id;
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("modeofpayment", { response: result });
+            }
+        });
+    }
+    else if (req.body.updateid != null) {
+        var id = req.body.id;
+        var typeofpayment = req.body.typeofpayment;
+        var docreferred = req.body.docreferred;
+        var dateoftransaction = req.body.dateoftransaction;
+
+        var que = "UPDATE mode_of_payment SET type_of_payment = '" + typeofpayment + "' , doc_referred = '" + docreferred + "',  = '" + dateoftransaction + "' WHERE medicine_id = '" + id + "'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("modeofpayment", { response: result });
+            }
+        });
+    }
+    else {
+        var typeofpayment = req.body.typeofpayment;
+        var docreferred = req.body.docreferred;
+        var dateoftransaction = req.body.dateoftransaction;
+
+
+        var que = "INSERT INTO mode_of_payment (type_of_payment, doc_referred,date_of_transaction) VALUES ('" + typeofpayment + "','" + docreferred + "','" + dateoftransaction + "')";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("modeofpayment", { response: result });
+            }
+        });
+    }
+})
+
 app.post('/delete', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     console.log("inside post /")
