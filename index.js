@@ -612,8 +612,9 @@ app.post('/doctor', (req, res) => {
 app.post('/employee', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     if (req.body.readall != null) {
+        var id = req.body.readall;
+        var que = "SELECT * FROM employee WHERE employee_id = " + id;
 
-        var que = "SELECT * FROM employee";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -621,7 +622,7 @@ app.post('/employee', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("employee", { response: result });
+                res.render("employee", { response: json });
             }
         });
     }

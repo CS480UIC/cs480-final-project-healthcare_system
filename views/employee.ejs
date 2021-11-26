@@ -165,60 +165,8 @@
 
                     <button type="submit" class="btn btn-primary">Read All</button>
                 </form>
-                <table>
-                    <% if(response.length != 0){ %>
-                        <%   var i=1; %>
-                            <%  response.forEach(function(data){  %>
-                                <tr>
-                                    <td>
-                                        <%=i; %>
-                                    </td>
-                                    <td>
-                                        <%=data.doctor_employee_id %>
-                                    </td>
-                                    <td>
-                                        <%=data.first_name %>
-                                    </td>
-                                    <td>
-                                        <%=data.last_name %>
-                                    </td>
-                                    <td>
-                                        <%=data.address %>
-                                    </td>
-                                    <td>
-                                        <%=data.email %>
-                                    </td>
-                                    <td>
-                                        <%=data.city %>
-                                    </td>
-                                    <td>
-                                        <%=data.country %>
-                                    </td>
-                                    <td>
-                                        <%=data.description %>
-                                    </td>
-                                    <td>
-                                        <%=data.hospital_name %>
-                                    </td>
-                                    <td>
-                                        <%=data.salary %>
-                                    </td>
-                                    <td>
-                                        <%=data.type_of_employment %>
-                                    </td>
-                                    <td>
-                                        <%=data.hospital_id %>
-                                    </td>
 
-                                </tr>
-                                <%  i++; }) %>
-                                    <% } else{ %>
-                                        <tr>
-                                            <td colspan=" 7 ">No Data Found</td>
-                                        </tr>
-                                        <% } %>
-
-                </table>
+                <%= response %>
             </div>
         </div>
     </div>
