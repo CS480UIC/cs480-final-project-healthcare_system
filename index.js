@@ -382,7 +382,7 @@ app.post('/modeofpayment', (req, res) => {
             }
         });
     }
-    else if (req.body.deleteidmedicine != null) {
+    else if (req.body.deleteidpayment != null) {
         var id = parseInt(req.body.deleteidpayment);
 
         var que = "DELETE FROM mode_of_payment where payment_id = " + id;
@@ -398,12 +398,12 @@ app.post('/modeofpayment', (req, res) => {
         });
     }
     else if (req.body.updateid != null) {
-        var id = req.body.id;
+        var id = req.body.updateid;
         var typeofpayment = req.body.typeofpayment;
         var docreferred = req.body.docreferred;
         var dateoftransaction = req.body.dateoftransaction;
 
-        var que = "UPDATE mode_of_payment SET type_of_payment = '" + typeofpayment + "' , doc_referred = '" + docreferred + "',  = '" + dateoftransaction + "' WHERE medicine_id = '" + id + "'";
+        var que = "UPDATE mode_of_payment SET type_of_payment = '" + typeofpayment + "' , doc_referred = '" + docreferred + "', date_of_transaction = '" + dateoftransaction + "' WHERE payment_id = '" + id + "'";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -421,7 +421,7 @@ app.post('/modeofpayment', (req, res) => {
         var dateoftransaction = req.body.dateoftransaction;
 
 
-        var que = "INSERT INTO mode_of_payment (type_of_payment, doc_referred,date_of_transaction) VALUES ('" + typeofpayment + "','" + docreferred + "','" + dateoftransaction + "')";
+        var que = "INSERT INTO mode_of_payment (type_of_payment, doc_referred,date_of_transaction) VALUES ('" + typeofpayment + "','" + docreferred + "', date_of_transaction = '" + dateoftransaction + "')";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
