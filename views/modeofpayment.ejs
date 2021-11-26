@@ -102,6 +102,36 @@
                     </div>
 
                     <button type="submit" class="btn btn-primary">Read All</button>
+                    <table>
+                        <% if(response.length != 0){ %>
+                            <%   var i=1; %>
+                                <%  response.forEach(function(data){  %>
+                                    <tr>
+                                        <td>
+                                            <%=i; %>
+                                        </td>
+                                        <td>
+                                            <%=data.payment_id %>
+                                        </td>
+                                        <td>
+                                            <%=data.type_of_payment %>
+                                        </td>
+                                        <td>
+                                            <%=data.doc_referred %>
+                                        </td>
+                                        <td>
+                                            <%=data.date_of_transaction %>
+                                        </td>
+
+                                    </tr>
+                                    <%  i++; }) %>
+                                        <% } else{ %>
+                                            <tr>
+                                                <td colspan=" 7 ">No Data Found</td>
+                                            </tr>
+                                            <% } %>
+
+                    </table>
                 </form>
 
             </div>

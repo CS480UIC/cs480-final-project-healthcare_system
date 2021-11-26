@@ -401,7 +401,7 @@ app.post('/medicine', (req, res) => {
 
 app.post('/modeofpayment', (req, res) => {
     if (req.body.readall != null) {
-
+        var id = req.body.readall;
         var que = "SELECT * FROM mode_of_payment";
         db.query(que, function (err, result, fields) {
             if (err) {
@@ -425,7 +425,6 @@ app.post('/modeofpayment', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("modeofpayment", { response: result });
             }
         });
     }
@@ -443,7 +442,6 @@ app.post('/modeofpayment', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("modeofpayment", { response: result });
             }
         });
     }
@@ -461,7 +459,6 @@ app.post('/modeofpayment', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("modeofpayment", { response: result });
             }
         });
     }
@@ -495,7 +492,6 @@ app.post('/patientfeedback', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patientfeedback", { response: result });
             }
         });
     }
@@ -514,7 +510,6 @@ app.post('/patientfeedback', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patientfeedback", { response: result });
             }
         });
     }
@@ -532,7 +527,6 @@ app.post('/patientfeedback', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patientfeedback", { response: result });
             }
         });
     }
