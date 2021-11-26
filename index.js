@@ -43,12 +43,17 @@ app.get('/hospital', (req, res) => {
     res.render("hospital", { response: { name: "" } });
 
 })
+
 app.get('/medicine', (req, res) => {
     res.render("medicine", { response: [{}] });
 
 })
 app.get('/modeofpayment', (req, res) => {
     res.render("modeofpayment", { response: [{}] });
+
+})
+app.get('/patientfeedback', (req, res) => {
+    res.render("patientfeedback", { response: [{}] });
 
 })
 app.get('/hospital/:id', (req, res) => {
@@ -359,10 +364,6 @@ app.post('/medicine', (req, res) => {
             }
         });
     }
-
-
-
-
 })
 
 // mode of payment
@@ -434,7 +435,77 @@ app.post('/modeofpayment', (req, res) => {
         });
     }
 })
+// patiend feedback
 
+app.post('/patientfeedback', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    if (req.body.readall != null) {
+
+        var que = "SELECT * FROM patient_feedback";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("patientfeedback", { response: result });
+            }
+        });
+    }
+    else if (req.body.deleteidmedicine != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "DELETE FROM patient_feedback where patient_id = " + id;
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("patientfeedback", { response: result });
+            }
+        });
+    }
+    else if (req.body.updateid != null) {
+        var id = req.body.id;
+        var employeeid = req.body.employeeid;
+        var feedback = req.body.feedback;
+        var patient_name = req.body.patient_name;
+        var date_of_feedback = req.body.date_of_feedback;
+
+        var que = "UPDATE patient_feedback SET empolyee_id = '" + employeeid + "' , feedback = '" + feedback + "', patient_name = '" + patient_name + "', date_of_feedback= '" + date_of_feedback + "' WHERE patient_id = '" + id + "'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("patientfeedback", { response: result });
+            }
+        });
+    }
+    else {
+        var employeeid = req.body.employeeid;
+        var feedback = req.body.feedback;
+        var patient_name = req.body.patient_name;
+        var date_of_feedback = req.body.date_of_feedback;
+
+        var que = "INSERT INTO patient_feedback (empolyee_id,feedback, patient_name,date_of_feedback) VALUES ('" + employeeid + "','" + feedback + "','" + patient_name + "', '" + date_of_feedback + "')";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("patientfeedback", { response: result });
+            }
+        });
+    }
+})
 app.post('/delete', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     console.log("inside post /")
