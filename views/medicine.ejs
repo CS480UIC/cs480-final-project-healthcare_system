@@ -106,9 +106,7 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <p>
-                    <%= response %>
-                </p>
+
                 <h2>Read all record</h2>
                 <form action="/medicine" method="post">
                     <div class="form-group">
@@ -118,34 +116,36 @@
 
                     <button type="submit" class="btn btn-primary">Read All</button>
                 </form>
+                <table>
+                    <% if(response.length != 0){ %>
+                        <%   var i=1; %>
+                            <%  response.forEach(function(data){  %>
+                                <tr>
+                                    <td>
+                                        <%=i; %>
+                                    </td>
+                                    <td>
+                                        <%=data.medicine_name %>
+                                    </td>
+                                    <td>
+                                        <%=data.price %>
+                                    </td>
+                                    <td>
+                                        <%=data.expiry_term_year %>
+                                    </td>
+                                    <td>
+                                        <%=data.hospital_id %>
+                                    </td>
 
-                <% if(response.result !=null){ %>
-                    <%   var i=1; %>
-                        <%  response.result.forEach(function(data){  %>
-                            <tr>
-                                <td>
-                                    <%=i; %>
-                                </td>
-                                <td>
-                                    <%=data.medicine_name %>
-                                </td>
-                                <td>
-                                    <%=data.price %>
-                                </td>
-                                <td>
-                                    <%=data.expiry_term_year %>
-                                </td>
-                                <td>
-                                    <%=data.hospital_id %>
-                                </td>
+                                </tr>
+                                <%  i++; }) %>
+                                    <% } else{ %>
+                                        <tr>
+                                            <td colspan=" 7 ">No Data Found</td>
+                                        </tr>
+                                        <% } %>
 
-                            </tr>
-                            <%  i++; }) %>
-                                <% } else{ %>
-                                    <tr>
-                                        <td colspan=" 7 ">No Data Found</td>
-                                    </tr>
-                                    <% } %>
+                </table>
             </div>
         </div>
     </div>

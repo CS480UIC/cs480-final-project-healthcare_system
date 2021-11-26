@@ -44,7 +44,7 @@ app.get('/hospital', (req, res) => {
 
 })
 app.get('/medicine', (req, res) => {
-    res.render("medicine", { response: { name: "" } });
+    res.render("medicine", { response: [{}] });
 
 })
 app.get('/hospital/:id', (req, res) => {
