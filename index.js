@@ -217,8 +217,6 @@ app.post('/patient/create', (req, res) => {
 
 })
 app.post('/patient', (req, res) => {
-    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
-    console.log("inside post /")
     var id = req.body.name;
     var city = req.body.city;
     var deleteid = req.body.deleteid;
@@ -237,6 +235,31 @@ app.post('/patient', (req, res) => {
 
             }
 
+        });
+    }
+    else if (req.body.updateID != null) {
+        var id = req.body.updateID;
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
+        var username = req.body.username;
+        var password = req.body.password;
+        var address = req.body.address;
+        var city = req.body.city;
+        var country = req.body.country;
+
+        var patiendid = req.body.patiendid;
+        var hospitalid = req.body.hospitalid;
+        var medicineid = req.body.medicineid;
+        var que = "UPDATE patient SET first_name = '" + firstname + "' , last_name = '" + lastname + "', username = '" + username + "', password= '" + password + "', address = '" + address + "', city = '" + city + "', country='" + country + "',payment_id= '" + patiendid + "', hospital_id = '" + hospitalid + "',medicine_id='" + medicineid + "' WHERE patient_id = '" + id + "'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+
+            }
         });
     }
     else if (deleteid != null) {
