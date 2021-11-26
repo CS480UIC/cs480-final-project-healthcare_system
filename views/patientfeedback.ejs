@@ -37,35 +37,38 @@
     <div class="row">
         <div class="col-md-6">
             <h2>Update record</h2>
-            <form action="/modeofpayment" method="post">
+            <form action="/patientfeedback" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">ID:</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="updateid">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Type of payment:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="typeofpayment">
+                    <label for="exampleInputEmail1">Employee ID:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="employeeid">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Doctor referred:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="docreferred">
+                    <label for="exampleInputEmail1">Feedback:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="feedback">
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Date of transaction:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="dateoftransaction">
+                    <label for="exampleInputEmail1">patient Name:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="patient_name">
                 </div>
-
-
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Date of feedback:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="date_of_feedback">
+                </div>
+                <br />
                 <button type="submit" class="btn btn-primary">INSERT</button>
             </form>
 
 
             <h2>Delete a record</h2>
             <br/>
-            <form action="/modeofpayment" method="post">
+            <form action="/patientfeedback" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Enter the ID:</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="deleteidpayment">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="deleteidmedicine">
                 </div>
                 <button type="submit" class="btn btn-primary">Delete</button>
             </form>
@@ -74,20 +77,23 @@
             <br />
             <div class="col-md-6">
                 <h2>Create a record</h2>
-                <form action="/modeofpayment" method="post">
+                <form action="/patientfeedback" method="post">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Type of payment:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="typeofpayment">
+                        <label for="exampleInputEmail1">Employee ID:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="employeeid">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Doctor referred:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="docreferred">
+                        <label for="exampleInputEmail1">Feedback:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="feedback">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Date of Transaction:</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="dateoftransaction">
+                        <label for="exampleInputEmail1">Patient Name:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="patient_name">
                     </div>
-
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Date of Feedback:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="date_of_feedback">
+                    </div>
 
                     <button type="submit" class="btn btn-primary">INSERT</button>
                 </form>
@@ -95,7 +101,7 @@
             <div class="col-md-6">
 
                 <h2>Read all record</h2>
-                <form action="/modeofpayment" method="post">
+                <form action="/patientfeedback" method="post">
                     <div class="form-group">
                         <label for="exampleInputEmail1"></label>
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall">

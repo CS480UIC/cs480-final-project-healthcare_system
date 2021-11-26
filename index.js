@@ -469,13 +469,13 @@ app.post('/patientfeedback', (req, res) => {
         });
     }
     else if (req.body.updateid != null) {
-        var id = req.body.id;
+        var id = req.body.updateid;
         var employeeid = req.body.employeeid;
         var feedback = req.body.feedback;
         var patient_name = req.body.patient_name;
         var date_of_feedback = req.body.date_of_feedback;
 
-        var que = "UPDATE patient_feedback SET empolyee_id = '" + employeeid + "' , feedback = '" + feedback + "', patient_name = '" + patient_name + "', date_of_feedback= '" + date_of_feedback + "' WHERE patient_id = '" + id + "'";
+        var que = "UPDATE patient_feedback SET employee_id = '" + employeeid + "' , feedback = '" + feedback + "', patient_name = '" + patient_name + "', date_of_feedback= '" + date_of_feedback + "' WHERE patient_id = '" + id + "'";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -493,7 +493,7 @@ app.post('/patientfeedback', (req, res) => {
         var patient_name = req.body.patient_name;
         var date_of_feedback = req.body.date_of_feedback;
 
-        var que = "INSERT INTO patient_feedback (empolyee_id,feedback, patient_name,date_of_feedback) VALUES ('" + employeeid + "','" + feedback + "','" + patient_name + "', '" + date_of_feedback + "')";
+        var que = "INSERT INTO patient_feedback (employee_id,feedback, patient_name,date_of_feedback) VALUES ('" + employeeid + "','" + feedback + "','" + patient_name + "', '" + date_of_feedback + "')";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
