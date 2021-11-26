@@ -59,6 +59,10 @@
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputEmail1">City:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="city">
+                </div>
+                <div class="form-group">
                     <label for="exampleInputEmail1">Country:</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="country">
                 </div>
@@ -131,6 +135,10 @@
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">City:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="city">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Country:</label>
                         <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="country">
                     </div>
@@ -190,18 +198,50 @@
                                         <%=i; %>
                                     </td>
                                     <td>
-                                        <%=data.medicine_name %>
+                                        <%=data.doctor_employee_id %>
                                     </td>
                                     <td>
-                                        <%=data.price %>
+                                        <%=data.first_name %>
                                     </td>
                                     <td>
-                                        <%=data.expiry_term_year %>
+                                        <%=data.last_name %>
                                     </td>
                                     <td>
-                                        <%=data.hospital_id %>
+                                        <%=data.address %>
                                     </td>
-
+                                    <td>
+                                        <%=data.email %>
+                                    </td>
+                                    <td>
+                                        <%=data.city %>
+                                    </td>
+                                    <td>
+                                        <%=data.country %>
+                                    </td>
+                                    <td>
+                                        <%=data.description %>
+                                    </td>
+                                    <td>
+                                        <%=data.hospital_name %>
+                                    </td>
+                                    <td>
+                                        <%=data.salary %>
+                                    </td>
+                                    <td>
+                                        <%=data.type_of_employment %>
+                                    </td>
+                                    <td>
+                                        <%=data.phone_number %>
+                                    </td>
+                                    <td>
+                                        <%=data.speciality %>
+                                    </td>
+                                    <td>
+                                        <%=data.doc_description %>
+                                    </td>
+                                    <td>
+                                        <%=data.hospital_table_id %>
+                                    </td>
                                 </tr>
                                 <%  i++; }) %>
                                     <% } else{ %>

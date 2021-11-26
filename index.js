@@ -545,11 +545,12 @@ app.post('/doctor', (req, res) => {
         });
     }
     else if (req.body.updateid != null) {
-        var id = req.body.id;
+        var id = req.body.updateid;
         var first_name = req.body.first_name;
         var last_name = req.body.last_name;
         var address = req.body.address;
         var email = req.body.email;
+        var city = req.body.city;
         var country = req.body.country;
         var description = req.body.description;
         var hospital_name = req.body.hospital_name;
@@ -559,7 +560,7 @@ app.post('/doctor', (req, res) => {
         var speciality = req.body.speciality;
         var doc_description = req.body.doc_description;
         var hospital_table_id = req.body.hospital_table_id;
-        var que = "UPDATE doctor SET first_name = '" + first_name + "' , last_name = '" + last_name + "', address = '" + address + "', email= '" + email + "', country = '" + country + "', description = '" + description + "', hospital_name = '" + hospital_name + "',salary = '" + salary + "', type_of_employement = '" + type_of_employement + "', phone_number = '" + phone_number + "',speciality = '" + speciality + "', doc_description = '" + doc_description + "', hospital_table_id = '" + hospital_table_id + "' WHERE doctor_employee_id = '" + id + "'";
+        var que = "UPDATE doctor SET first_name = '" + first_name + "' , last_name = '" + last_name + "', address = '" + address + "', email= '" + email + "', city= '" + city + "', country = '" + country + "', description = '" + description + "', hospital_name = '" + hospital_name + "',salary = '" + salary + "', type_of_employment = '" + type_of_employement + "', phone_number = '" + phone_number + "',speciality = '" + speciality + "', doc_description = '" + doc_description + "', hospital_table_id = '" + hospital_table_id + "' WHERE doctor_employee_id = '" + id + "'";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -576,6 +577,7 @@ app.post('/doctor', (req, res) => {
         var last_name = req.body.last_name;
         var address = req.body.address;
         var email = req.body.email;
+        var city = req.body.city;
         var country = req.body.country;
         var description = req.body.description;
         var hospital_name = req.body.hospital_name;
@@ -586,7 +588,7 @@ app.post('/doctor', (req, res) => {
         var doc_description = req.body.doc_description;
         var hospital_table_id = req.body.hospital_table_id;
 
-        var que = "INSERT INTO doctor (first_name,last_name, address,email,country,description,hospital_name, salary, type_of_employement,phone_number,speciality,doc_description,hospital_table_id) VALUES ('" + first_name + "','" + last_name + "','" + address + "', '" + email + "' , '" + country + "', '" + description + "','" + hospital_name + "','" + salary + "','" + type_of_employement + "','" + phone_number + "','" + speciality + "','" + doc_description + "','" + hospital_table_id + "')";
+        var que = "INSERT INTO doctor (first_name,last_name, address,email,city,country,description,hospital_name, salary, type_of_employment,phone_number,speciality,doc_description,hospital_table_id) VALUES ('" + first_name + "','" + last_name + "','" + address + "', '" + email + "' , '" + city + "','" + country + "', '" + description + "','" + hospital_name + "','" + salary + "','" + type_of_employement + "','" + phone_number + "','" + speciality + "','" + doc_description + "','" + hospital_table_id + "')";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
