@@ -43,6 +43,10 @@ app.get('/hospital', (req, res) => {
     res.render("hospital", { response: { name: "" } });
 
 })
+app.get('/medicine', (req, res) => {
+    res.render("medicine", { response: { name: "" } });
+
+})
 app.get('/hospital/:id', (req, res) => {
     var id = req.params.id;
     console.log(id);
@@ -167,10 +171,39 @@ app.post('/create', (req, res) => {
     });
 
 })
+app.post('/patient/create', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    var firstname = req.body.firstname;
+    var lastname = req.body.lastname;
+    var username = req.body.username;
+    var password = req.body.password;
+    var address = req.body.address;
+    var city = req.body.city;
+    var country = req.body.country;
+
+    var patiendid = req.body.patiendid;
+    var hospitalid = req.body.hospitalid;
+    var medicineid = req.body.medicineid;
+
+    var que = "INSERT INTO patient (first_name,last_name, username,password, address,city,country,payment_id,hospital_id,medicine_id) VALUES ('" + firstname + "','" + lastname + "','" + username + "', '" + password + "','" + address + "','" + city + "','" + country + "'," + patiendid + "," + hospitalid + "," + medicineid + ")";
+    db.query(que, function (err, result, fields) {
+        if (err) {
+            throw err;
+        }
+        else {
+            var json = JSON.stringify(result)
+            console.log(json);
+            res.render("patient/create", { response: result });
+        }
+    });
+
+})
 app.post('/patient', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     console.log("inside post /")
     var id = req.body.name;
+    var city = req.body.city;
+    var deleteid = req.body.deleteid;
     if (id != null) {
         var que = "SELECT * FROM patient WHERE patient_id='" + id + "'";
         db.query(que, function (err, result, fields) {
@@ -186,6 +219,48 @@ app.post('/patient', (req, res) => {
 
             }
 
+        });
+    }
+    else if (deleteid != null) {
+        var que = "DELETE * FROM patient WHERE patient_id=" + deleteid;
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("patient", { response: result });
+
+
+            }
+
+        });
+    }
+    else if (city != null) {
+        var firstname = req.body.firstname;
+        var lastname = req.body.lastname;
+        var username = req.body.username;
+        var password = req.body.password;
+        var address = req.body.address;
+        var city = req.body.city;
+        var country = req.body.country;
+
+        var patiendid = req.body.patiendid;
+        var hospitalid = req.body.hospitalid;
+        var medicineid = req.body.medicineid;
+
+        var que = "INSERT INTO patient (first_name,last_name, username,password, address,city,country,payment_id,hospital_id,medicine_id) VALUES ('" + firstname + "','" + lastname + "','" + username + "', '" + password + "','" + address + "','" + city + "','" + country + "'," + patiendid + "," + hospitalid + "," + medicineid + ")";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("patient", { response: result });
+            }
         });
     }
     else {
@@ -205,6 +280,82 @@ app.post('/patient', (req, res) => {
 
         });
     }
+
+
+})
+
+// MEDCICINE
+// create
+app.post('/medicine', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    if (req.body.readall != null) {
+
+        var que = "SELECT * FROM medicine";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("medicine", { response: result });
+            }
+        });
+    }
+    else if (req.body.deleteidmedicine != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "DELETE FROM medicine where medicine_id = " + id;
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("medicine", { response: result });
+            }
+        });
+    }
+    else if (req.body.updateid != null) {
+        var id = req.body.id;
+        var name = req.body.name;
+        var price = req.body.price;
+        var expiry = req.body.expiry;
+        var hospital = req.body.hospital;
+
+        var que = "UPDATE medicine SET medicine_name = '" + name + "' , price = '" + price + "', expiry_term_year = '" + expiry + "', hospital_id= '" + hospital + "' WHERE medicine_id = '" + id + "'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("medicine", { response: result });
+            }
+        });
+    }
+    else {
+        var name = req.body.name;
+        var price = req.body.price;
+        var expiry = req.body.expiry;
+        var hospital = req.body.hospital;
+
+        var que = "INSERT INTO medicine (medicine_name,price, expiry_term_year,hospital_id) VALUES ('" + name + "','" + price + "','" + expiry + "', '" + hospital + "')";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("medicine", { response: result });
+            }
+        });
+    }
+
+
 
 
 })
