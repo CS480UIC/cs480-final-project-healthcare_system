@@ -48,6 +48,10 @@ app.get('/medicine', (req, res) => {
     res.render("medicine", { response: [{}] });
 
 })
+app.get('/doctor', (req, res) => {
+    res.render("doctor", { response: [{}] });
+
+})
 app.get('/modeofpayment', (req, res) => {
     res.render("modeofpayment", { response: [{}] });
 
@@ -502,6 +506,95 @@ app.post('/patientfeedback', (req, res) => {
                 var json = JSON.stringify(result)
                 console.log(json);
                 res.render("patientfeedback", { response: result });
+            }
+        });
+    }
+})
+
+// doctor
+
+app.post('/doctor', (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
+    if (req.body.readall != null) {
+
+        var que = "SELECT * FROM doctor";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("doctor", { response: result });
+            }
+        });
+    }
+    else if (req.body.deleteidmedicine != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "DELETE FROM doctor where doctor_employee_id = " + id;
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("doctor", { response: result });
+            }
+        });
+    }
+    else if (req.body.updateid != null) {
+        var id = req.body.id;
+        var first_name = req.body.first_name;
+        var last_name = req.body.last_name;
+        var address = req.body.address;
+        var email = req.body.email;
+        var country = req.body.country;
+        var description = req.body.description;
+        var hospital_name = req.body.hospital_name;
+        var salary = req.body.salary;
+        var type_of_employement = req.body.type_of_employement;
+        var phone_number = req.body.phone_number;
+        var speciality = req.body.speciality;
+        var doc_description = req.body.doc_description;
+        var hospital_table_id = req.body.hospital_table_id;
+        var que = "UPDATE doctor SET first_name = '" + first_name + "' , last_name = '" + last_name + "', address = '" + address + "', email= '" + email + "', country = '" + country + "', description = '" + description + "', hospital_name = '" + hospital_name + "',salary = '" + salary + "', type_of_employement = '" + type_of_employement + "', phone_number = '" + phone_number + "',speciality = '" + speciality + "', doc_description = '" + doc_description + "', hospital_table_id = '" + hospital_table_id + "' WHERE doctor_employee_id = '" + id + "'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("doctor", { response: result });
+            }
+        });
+    }
+    else {
+        var first_name = req.body.first_name;
+        var last_name = req.body.last_name;
+        var address = req.body.address;
+        var email = req.body.email;
+        var country = req.body.country;
+        var description = req.body.description;
+        var hospital_name = req.body.hospital_name;
+        var salary = req.body.salary;
+        var type_of_employement = req.body.type_of_employement;
+        var phone_number = req.body.phone_number;
+        var speciality = req.body.speciality;
+        var doc_description = req.body.doc_description;
+        var hospital_table_id = req.body.hospital_table_id;
+
+        var que = "INSERT INTO doctor (first_name,last_name, address,email,country,description,hospital_name, salary, type_of_employement,phone_number,speciality,doc_description,hospital_table_id) VALUES ('" + first_name + "','" + last_name + "','" + address + "', '" + email + "' , '" + country + "', '" + description + "','" + hospital_name + "','" + salary + "','" + type_of_employement + "','" + phone_number + "','" + speciality + "','" + doc_description + "','" + hospital_table_id + "')";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("doctor", { response: result });
             }
         });
     }
