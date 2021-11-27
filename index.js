@@ -39,6 +39,10 @@ app.get('/create', (req, res) => {
     res.render("create", { response: "" });
 
 })
+app.get('/queries', (req, res) => {
+    res.render("queries", { response: "" });
+
+})
 app.get('/hospital', (req, res) => {
     res.render("hospital", { response: { name: "" } });
 
@@ -117,10 +121,10 @@ app.post('/register', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
 
     console.log(req.body);
-    var name = req.body.name;
-    var email = req.body.email;
+    var username = req.body.username;
     var password = req.body.password;
-    var que = "INSERT INTO patient (name,email,password) VALUES ('" + name + "','" + email + "','" + password + "')";
+
+    var que = "INSERT INTO admin (username,password) VALUES ('" + username + "','" + password + "')";
     db.query(que, function (err, result, fields) {
         if (err) throw err;
 
@@ -132,11 +136,10 @@ app.post('/register', (req, res) => {
 
 
 app.post('/', (req, res) => {
-    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     console.log("inside post /")
-    var email = req.body.email;
+    var username = req.body.username;
     var password = req.body.password;
-    var que = "SELECT COUNT(*) AS count FROM patient WHERE username='" + email + "' AND password='" + password + "'";
+    var que = "SELECT COUNT(*) AS count FROM admin WHERE username='" + username + "' AND password='" + password + "'";
     db.query(que, function (err, result, fields) {
         if (err) {
             throw err;
@@ -148,7 +151,7 @@ app.post('/', (req, res) => {
             }
             else {
                 var json = JSON.stringify(result)
-                var que = "SELECT * FROM patient WHERE username='" + email + "' AND password='" + password + "'";
+                var que = "SELECT * FROM admin WHERE username='" + username + "' AND password='" + password + "'";
                 var que1 = "SELECT name FROM hospital";
                 var r1;
                 db.query(que1, function (err, result, fields) {
@@ -263,7 +266,7 @@ app.post('/patient', (req, res) => {
         });
     }
     else if (deleteid != null) {
-        var que = "DELETE * FROM patient WHERE patient_id=" + deleteid;
+        var que = "DELETE FROM patient WHERE patient_id=" + deleteid;
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -272,8 +275,6 @@ app.post('/patient', (req, res) => {
 
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patient", { response: result });
-
 
             }
 
@@ -300,7 +301,6 @@ app.post('/patient', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patient", { response: result });
             }
         });
     }
@@ -314,8 +314,6 @@ app.post('/patient', (req, res) => {
 
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patient", { response: result });
-
 
             }
 
@@ -354,7 +352,6 @@ app.post('/medicine', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("medicine", { response: result });
             }
         });
     }
@@ -373,7 +370,6 @@ app.post('/medicine', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("medicine", { response: result });
             }
         });
     }
@@ -391,7 +387,6 @@ app.post('/medicine', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("medicine", { response: result });
             }
         });
     }
@@ -561,7 +556,6 @@ app.post('/doctor', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("doctor", { response: result });
             }
         });
     }
@@ -589,7 +583,6 @@ app.post('/doctor', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("doctor", { response: result });
             }
         });
     }
@@ -617,7 +610,6 @@ app.post('/doctor', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("doctor", { response: result });
             }
         });
     }
@@ -757,5 +749,169 @@ app.post('/update', (req, res) => {
     });
 
 })
+
+app.post('/queries1', (req, res) => {
+    if (req.body.readall != null) {
+
+        var que = "SELECT employee_id, first_name FROM employee WHERE salary >= 10000 AND salary <= 1000000;";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    
+    }
+ 
+
+})
+app.post('/queries2', (req, res) => {
+    if (req.body.readall1  != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "SELECT payment_id, date_of_transaction FROM mode_of_payment WHERE type_of_payment= 'credit card' ;";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    }
+
+})
+app.post('/queries3', (req, res) => {
+    if (req.body.readall != null) {
+
+        var que = "SELECT speciality  FROM doctor WHERE type_of_employment = 'employee'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    }
+})
+    app.post('/queries4', (req, res) => {
+        if (req.body.readall4  != null) {
+            var id = parseInt(req.body.deleteidmedicine);
+    
+            var que = "SELECT SUM(salary) as TOTAL_CHICAGO_BUDGET FROM doctor WHERE city = 'Chicago';";
+            db.query(que, function (err, result, fields) {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    res.render("queries", { response: result });
+                }
+            });
+        }
+    
+    })
+    app.post('/queries5', (req, res) => {
+        if (req.body.readall5  != null) {
+            var id = parseInt(req.body.deleteidmedicine);
+    
+            var que = "SELECT COUNT(payment_id) as TOTAL_FUNDS_COLLECTED FROM mode_of_payment WHERE date_of_transaction > '12/11/20'" ;
+            db.query(que, function (err, result, fields) {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    res.render("queries", { response: result });
+                }
+            });
+        }
+    
+    })
+    
+    app.post('/queries6', (req, res) => {
+        if (req.body.readall6  != null) {
+            var id = parseInt(req.body.deleteidmedicine);
+    
+            var que = "SELECT COUNT(number_of_staff) as p,name FROM hospital GROUP BY name  HAVING SUM(number_of_staff) < 50 ;" ;
+            db.query(que, function (err, result, fields) {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    res.render("queries", { response: result });
+                }
+            });
+        }
+    
+    })
+    app.post('/queries7', (req, res) => {
+        if (req.body.readall7  != null) {
+            var id = parseInt(req.body.deleteidmedicine);
+    
+            var que = "Select * from f;" ;
+            db.query(que, function (err, result, fields) {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    res.render("queries", { response: result });
+                }
+            });
+        }
+    
+    })
+    app.post('/queries8', (req, res) => {
+        if (req.body.readall8  != null) {
+            var id = parseInt(req.body.deleteidmedicine);
+    
+            var que = "select * from POC;" ;
+            db.query(que, function (err, result, fields) {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    res.render("queries", { response: result });
+                }
+            });
+        }
+    
+    })
+    app.post('/queries9', (req, res) => {
+        if (req.body.readall9  != null) {
+            var id = parseInt(req.body.deleteidmedicine);
+    
+            var que = "Select * from PAY;" ;
+            db.query(que, function (err, result, fields) {
+                if (err) {
+                    throw err;
+                }
+                else {
+                    var json = JSON.stringify(result)
+                    console.log(json);
+                    res.render("queries", { response: result });
+                }
+            });
+        }
+    
+    })
+
 module.exports = db;
 
