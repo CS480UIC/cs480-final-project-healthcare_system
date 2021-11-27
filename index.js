@@ -16,10 +16,10 @@ app.listen(3000, () => {
 app.set("view engine", "ejs");
 
 const db = mysql.createConnection({
-    user: 'root',
+    user: 'rrr',
     host: 'localhost',
-    password: 'password',
-    database: 'healthcare_system'
+    password: 'PASS',
+    database: 'bookstore'
 });
 db.connect(function (error) {
     // callback
