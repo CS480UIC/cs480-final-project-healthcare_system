@@ -117,10 +117,10 @@ app.post('/register', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
 
     console.log(req.body);
-    var name = req.body.name;
-    var email = req.body.email;
+    var username = req.body.username;
     var password = req.body.password;
-    var que = "INSERT INTO patient (name,email,password) VALUES ('" + name + "','" + email + "','" + password + "')";
+
+    var que = "INSERT INTO admin (username,password) VALUES ('" + username + "','" + password + "')";
     db.query(que, function (err, result, fields) {
         if (err) throw err;
 
@@ -132,11 +132,10 @@ app.post('/register', (req, res) => {
 
 
 app.post('/', (req, res) => {
-    //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     console.log("inside post /")
-    var email = req.body.email;
+    var username = req.body.username;
     var password = req.body.password;
-    var que = "SELECT COUNT(*) AS count FROM patient WHERE username='" + email + "' AND password='" + password + "'";
+    var que = "SELECT COUNT(*) AS count FROM admin WHERE username='" + username + "' AND password='" + password + "'";
     db.query(que, function (err, result, fields) {
         if (err) {
             throw err;
@@ -148,7 +147,7 @@ app.post('/', (req, res) => {
             }
             else {
                 var json = JSON.stringify(result)
-                var que = "SELECT * FROM patient WHERE username='" + email + "' AND password='" + password + "'";
+                var que = "SELECT * FROM admin WHERE username='" + username + "' AND password='" + password + "'";
                 var que1 = "SELECT name FROM hospital";
                 var r1;
                 db.query(que1, function (err, result, fields) {
@@ -263,7 +262,7 @@ app.post('/patient', (req, res) => {
         });
     }
     else if (deleteid != null) {
-        var que = "DELETE * FROM patient WHERE patient_id=" + deleteid;
+        var que = "DELETE FROM patient WHERE patient_id=" + deleteid;
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -272,8 +271,6 @@ app.post('/patient', (req, res) => {
 
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patient", { response: result });
-
 
             }
 
@@ -300,7 +297,6 @@ app.post('/patient', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patient", { response: result });
             }
         });
     }
@@ -314,8 +310,6 @@ app.post('/patient', (req, res) => {
 
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("patient", { response: result });
-
 
             }
 
@@ -354,7 +348,6 @@ app.post('/medicine', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("medicine", { response: result });
             }
         });
     }
@@ -373,7 +366,6 @@ app.post('/medicine', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("medicine", { response: result });
             }
         });
     }
@@ -391,7 +383,6 @@ app.post('/medicine', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("medicine", { response: result });
             }
         });
     }
@@ -561,7 +552,6 @@ app.post('/doctor', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("doctor", { response: result });
             }
         });
     }
@@ -589,7 +579,6 @@ app.post('/doctor', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("doctor", { response: result });
             }
         });
     }
@@ -617,7 +606,6 @@ app.post('/doctor', (req, res) => {
             else {
                 var json = JSON.stringify(result)
                 console.log(json);
-                res.render("doctor", { response: result });
             }
         });
     }
