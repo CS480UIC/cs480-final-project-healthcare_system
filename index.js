@@ -60,6 +60,10 @@ app.get('/employee', (req, res) => {
     res.render("employee", { response: [{}] });
 
 })
+app.get('/hospitalentity', (req, res) => {
+    res.render("hospitalentity", { response: [{}] });
+
+})
 app.get('/modeofpayment', (req, res) => {
     res.render("modeofpayment", { response: [{}] });
 
@@ -488,6 +492,62 @@ app.post('/modeofpayment', (req, res) => {
 
 
         var que = "INSERT INTO mode_of_payment (type_of_payment, doc_referred,date_of_transaction) VALUES ('" + typeofpayment + "','" + docreferred + "', date_of_transaction = '" + dateoftransaction + "')";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+            }
+        });
+    }
+})
+
+//
+
+
+app.post('/hospitalentity', (req, res) => {
+    if (req.body.deleteidpayment != null) {
+        var id = parseInt(req.body.deleteidpayment);
+
+        var que = "DELETE FROM hospital where hospital_id = " + id;
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("hospitalentity", { response: result });
+            }
+        });
+    }
+    else if (req.body.updateid != null) {
+        var id = req.body.updateid;
+        var name = req.body.name;
+        var address = req.body.address;
+        var phone_no = req.body.phone_no;
+        var number_of_staff = req.body.number_of_staff;
+        var que = "UPDATE hospital SET name = '" + name + "' , address = '" + address + "', phone_no = '" + phone_no + "', number_of_staff = '" + number_of_staff + "' WHERE hospital_id = '" + id + "'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+            }
+        });
+    }
+    else {
+        var name = req.body.name;
+        var address = req.body.address;
+        var phone_no = req.body.phone_no;
+        var number_of_staff = req.body.number_of_staff;
+
+
+        var que = "INSERT INTO hospital (name, address, phone_no,number_of_staff) VALUES ('" + name + "','" + address + "','" + phone_no + "','" + number_of_staff + "')";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
