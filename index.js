@@ -16,10 +16,11 @@ app.listen(3000, () => {
 app.set("view engine", "ejs");
 
 const db = mysql.createConnection({
-    user: 'root',
+    user: 'rrr',
     host: 'localhost',
-    password: 'password',
-    database: 'healthcare_system'
+    password: 'PASS',
+    database: 'bookstore'
+
 });
 db.connect(function (error) {
     // callback
@@ -387,36 +388,71 @@ app.post('/medicine', (req, res) => {
         });
     }
     else if (req.body.deleteidmedicine != null) {
-        var id = parseInt(req.body.deleteidmedicine);
-
-        var que = "DELETE FROM medicine where medicine_id = " + id;
-        db.query(que, function (err, result, fields) {
+        var deleteid = parseInt(req.body.deleteidmedicine);
+        var que1 = "SELECT COUNT(*) as count FROM medicine WHERE medicine_id = " + deleteid;
+        db.query(que1, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                if (result[0].count == 0) {
+                    console.log("medicine ID does not exists");
+                    res.render("medicine", { response: result });
+                }
+                else {
+                    var que = "DELETE FROM medicine WHERE medicine_id=" + deleteid;
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+
+                    });
+                }
             }
+
         });
     }
     else if (req.body.updateid != null) {
-        var id = req.body.id;
+        var medid = req.body.updateid;
         var name = req.body.name;
         var price = req.body.price;
         var expiry = req.body.expiry;
         var hospital = req.body.hospital;
+        var que = "SELECT COUNT(*) as count7 FROM medicine WHERE medicine_id = " + medid;
 
-        var que = "UPDATE medicine SET medicine_name = '" + name + "' , price = '" + price + "', expiry_term_year = '" + expiry + "', hospital_id= '" + hospital + "' WHERE medicine_id = '" + id + "'";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                console.log("result:" + result);
+                if (result[0].count7 == 0) {
+                    console.log("medicine ID does not exists");
+                    res.render("medicine", { response: result });
+                }
+                else {
+                    var que = "UPDATE medicine SET medicine_name = '" + name + "' , price = '" + price + "', expiry_term_year = '" + expiry + "', hospital_id= '" + hospital + "' WHERE medicine_id = '" + id + "'";
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+                    });
+                }
+
             }
         });
+
     }
     else {
         var name = req.body.name;
@@ -456,16 +492,33 @@ app.post('/modeofpayment', (req, res) => {
     }
     else if (req.body.deleteidpayment != null) {
         var id = parseInt(req.body.deleteidpayment);
-
-        var que = "DELETE FROM mode_of_payment where payment_id = " + id;
-        db.query(que, function (err, result, fields) {
+        var que1 = "SELECT COUNT(*) as count FROM mode_of_payment WHERE payment_id = " + id;
+        db.query(que1, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                if (result[0].count == 0) {
+                    console.log("mode_of_payment ID does not exists");
+                    res.render("modeofpayment", { response: result });
+                }
+                else {
+                    var que = "DELETE FROM mode_of_payment where payment_id = " + id;
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+
+                    });
+                }
             }
+
         });
     }
     else if (req.body.updateid != null) {
@@ -473,17 +526,35 @@ app.post('/modeofpayment', (req, res) => {
         var typeofpayment = req.body.typeofpayment;
         var docreferred = req.body.docreferred;
         var dateoftransaction = req.body.dateoftransaction;
+        var que = "SELECT COUNT(*) as count7 FROM mode_of_payment WHERE payment_id = " + id;
 
-        var que = "UPDATE mode_of_payment SET type_of_payment = '" + typeofpayment + "' , doc_referred = '" + docreferred + "', date_of_transaction = '" + dateoftransaction + "' WHERE payment_id = '" + id + "'";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                console.log("result:" + result);
+                if (result[0].count7 == 0) {
+                    console.log("modeofpayment does not exists");
+                    res.render("modeofpayment", { response: result });
+                }
+                else {
+                    var que = "UPDATE mode_of_payment SET type_of_payment = '" + typeofpayment + "' , doc_referred = '" + docreferred + "', date_of_transaction = '" + dateoftransaction + "' WHERE payment_id = '" + id + "'";
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+                    });
+                }
+
             }
         });
+        
     }
     else {
         var typeofpayment = req.body.typeofpayment;
@@ -510,18 +581,35 @@ app.post('/modeofpayment', (req, res) => {
 app.post('/hospitalentity', (req, res) => {
     if (req.body.deleteidpayment != null) {
         var id = parseInt(req.body.deleteidpayment);
-
-        var que = "DELETE FROM hospital where hospital_id = " + id;
-        db.query(que, function (err, result, fields) {
+        var que1 = "SELECT COUNT(*) as count FROM hospital WHERE hospital_id = " + id;
+        db.query(que1, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
-                res.render("hospitalentity", { response: result });
+                if (result[0].count == 0) {
+                    console.log("hospital ID does not exists");
+                    res.render("hospitalentity", { response: result });
+                }
+                else {
+                    var que = "DELETE FROM hospital where hospital_id = " + id;
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+
+                    });
+                }
             }
+
         });
+        
     }
     else if (req.body.updateid != null) {
         var id = req.body.updateid;
@@ -529,16 +617,35 @@ app.post('/hospitalentity', (req, res) => {
         var address = req.body.address;
         var phone_no = req.body.phone_no;
         var number_of_staff = req.body.number_of_staff;
-        var que = "UPDATE hospital SET name = '" + name + "' , address = '" + address + "', phone_no = '" + phone_no + "', number_of_staff = '" + number_of_staff + "' WHERE hospital_id = '" + id + "'";
+        var que = "SELECT COUNT(*) as count7 FROM hospital WHERE hospital_id = " + id;
+
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                console.log("result:" + result);
+                if (result[0].count7 == 0) {
+                    console.log("hospitalid does not exists");
+                    res.render("hospitalentity", { response: result });
+                }
+                else {
+                    var que = "UPDATE hospital SET name = '" + name + "' , address = '" + address + "', phone_no = '" + phone_no + "', number_of_staff = '" + number_of_staff + "' WHERE hospital_id = '" + id + "'";
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+                    });
+                }
+
             }
         });
+       
     }
     else {
         var name = req.body.name;
@@ -579,16 +686,33 @@ app.post('/patientfeedback', (req, res) => {
     }
     else if (req.body.deleteidmedicine != null) {
         var id = parseInt(req.body.deleteidmedicine);
-
-        var que = "DELETE FROM patient_feedback where patient_id = " + id;
-        db.query(que, function (err, result, fields) {
+        var que1 = "SELECT COUNT(*) as count FROM patient_feedback WHERE patient_id = " + id;
+        db.query(que1, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                if (result[0].count == 0) {
+                    console.log("patientfeedback for that ID does not exists");
+                    res.render("patientfeedback", { response: result });
+                }
+                else {
+                    var que = "DELETE FROM patient_feedback where patient_id = " + id;
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+
+                    });
+                }
             }
+
         });
     }
     else if (req.body.updateid != null) {
@@ -597,17 +721,35 @@ app.post('/patientfeedback', (req, res) => {
         var feedback = req.body.feedback;
         var patient_name = req.body.patient_name;
         var date_of_feedback = req.body.date_of_feedback;
+        var que = "SELECT COUNT(*) as count7 FROM patient_feedback WHERE patient_id = " + id;
 
-        var que = "UPDATE patient_feedback SET employee_id = '" + employeeid + "' , feedback = '" + feedback + "', patient_name = '" + patient_name + "', date_of_feedback= '" + date_of_feedback + "' WHERE patient_id = '" + id + "'";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                console.log("result:" + result);
+                if (result[0].count7 == 0) {
+                    console.log("patient_feedback for that id does not exists");
+                    res.render("patientfeedback", { response: result });
+                }
+                else {
+                    var que = "UPDATE patient_feedback SET employee_id = '" + employeeid + "' , feedback = '" + feedback + "', patient_name = '" + patient_name + "', date_of_feedback= '" + date_of_feedback + "' WHERE patient_id = '" + id + "'";
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+                    });
+                }
+
             }
         });
+        
     }
     else {
         var employeeid = req.body.employeeid;
@@ -648,17 +790,35 @@ app.post('/doctor', (req, res) => {
     }
     else if (req.body.deleteidmedicine != null) {
         var id = parseInt(req.body.deleteidmedicine);
-
-        var que = "DELETE FROM doctor where doctor_employee_id = " + id;
-        db.query(que, function (err, result, fields) {
+        var que1 = "SELECT COUNT(*) as count FROM doctor WHERE doctor_employee_id = " + id;
+        db.query(que1, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                if (result[0].count == 0) {
+                    console.log("doctorfor that ID does not exists");
+                    res.render("doctor", { response: result });
+                }
+                else {
+                    var que = "DELETE FROM doctor where doctor_employee_id = " + id;
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+
+                    });
+                }
             }
+
         });
+        
     }
     else if (req.body.updateid != null) {
         var id = req.body.updateid;
@@ -676,16 +836,35 @@ app.post('/doctor', (req, res) => {
         var speciality = req.body.speciality;
         var doc_description = req.body.doc_description;
         var hospital_table_id = req.body.hospital_table_id;
-        var que = "UPDATE doctor SET first_name = '" + first_name + "' , last_name = '" + last_name + "', address = '" + address + "', email= '" + email + "', city= '" + city + "', country = '" + country + "', description = '" + description + "', hospital_name = '" + hospital_name + "',salary = '" + salary + "', type_of_employment = '" + type_of_employement + "', phone_number = '" + phone_number + "',speciality = '" + speciality + "', doc_description = '" + doc_description + "', hospital_table_id = '" + hospital_table_id + "' WHERE doctor_employee_id = '" + id + "'";
+        var que = "SELECT COUNT(*) as count7 FROM doctor WHERE doctor_employee_id = " + id;
+
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                console.log("result:" + result);
+                if (result[0].count7 == 0) {
+                    console.log("doctor id does not exists");
+                    res.render("doctor", { response: result });
+                }
+                else {
+                    var que = "UPDATE doctor SET first_name = '" + first_name + "' , last_name = '" + last_name + "', address = '" + address + "', email= '" + email + "', city= '" + city + "', country = '" + country + "', description = '" + description + "', hospital_name = '" + hospital_name + "',salary = '" + salary + "', type_of_employment = '" + type_of_employement + "', phone_number = '" + phone_number + "',speciality = '" + speciality + "', doc_description = '" + doc_description + "', hospital_table_id = '" + hospital_table_id + "' WHERE doctor_employee_id = '" + id + "'";
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+                    });
+                }
+
             }
         });
+        
     }
     else {
         var first_name = req.body.first_name;
@@ -738,17 +917,33 @@ app.post('/employee', (req, res) => {
     }
     else if (req.body.deleteidmedicine != null) {
         var id = parseInt(req.body.deleteidmedicine);
-
-        var que = "DELETE FROM employee where employee_id = " + id;
-        db.query(que, function (err, result, fields) {
+        var que1 = "SELECT COUNT(*) as count FROM employee WHERE employee_id = " + id;
+        db.query(que1, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
-                res.render("employee", { response: result });
+                if (result[0].count == 0) {
+                    console.log("employee fot that ID does not exists");
+                    res.render("employee", { response: result });
+                }
+                else {
+                    var que = "DELETE FROM employee where employee_id = " + id;
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+
+                    });
+                }
             }
+
         });
     }
     else if (req.body.updateid != null) {
@@ -764,18 +959,36 @@ app.post('/employee', (req, res) => {
         var salary = req.body.salary;
         var type_of_employement = req.body.type_of_employement;
         var hospital_id = req.body.hospital_id;
+        var que = "SELECT COUNT(*) as count7 FROM employee WHERE employee_id = " + id;
 
-        var que = "UPDATE employee SET first_name = '" + first_name + "' , last_name = '" + last_name + "', address = '" + address + "', email= '" + email + "', city= '" + city + "', country = '" + country + "', description = '" + description + "', hospital_name = '" + hospital_name + "',salary = '" + salary + "', type_of_employment = '" + type_of_employement + "', hospital_id = '" + hospital_id + "' WHERE employee_id = '" + id + "'";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
-                res.render("employee", { response: result });
+                console.log("result:" + result);
+                if (result[0].count7 == 0) {
+                    console.log("employee id does not exists");
+                    res.render("employee", { response: result });
+                }
+                else {
+                    var que = "UPDATE employee SET first_name = '" + first_name + "' , last_name = '" + last_name + "', address = '" + address + "', email= '" + email + "', city= '" + city + "', country = '" + country + "', description = '" + description + "', hospital_name = '" + hospital_name + "',salary = '" + salary + "', type_of_employment = '" + type_of_employement + "', hospital_id = '" + hospital_id + "' WHERE employee_id = '" + id + "'";
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+                    });
+                }
+
             }
         });
+        
+        
     }
     else {
         var first_name = req.body.first_name;
