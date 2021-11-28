@@ -16,10 +16,10 @@ app.listen(3000, () => {
 app.set("view engine", "ejs");
 
 const db = mysql.createConnection({
-    user: 'rrr',
+    user: 'root',
     host: 'localhost',
-    password: 'PASS',
-    database: 'bookstore'
+    password: 'password',
+    database: 'healthcare_system'
 });
 db.connect(function (error) {
     // callback
@@ -192,6 +192,9 @@ app.post('/create', (req, res) => {
     });
 
 })
+function isEmptyObject(obj) {
+    return !Object.keys(obj).length;
+}
 app.post('/patient/create', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     var firstname = req.body.firstname;
@@ -253,32 +256,70 @@ app.post('/patient', (req, res) => {
         var patiendid = req.body.patiendid;
         var hospitalid = req.body.hospitalid;
         var medicineid = req.body.medicineid;
-        var que = "UPDATE patient SET first_name = '" + firstname + "' , last_name = '" + lastname + "', username = '" + username + "', password= '" + password + "', address = '" + address + "', city = '" + city + "', country='" + country + "',payment_id= '" + patiendid + "', hospital_id = '" + hospitalid + "',medicine_id='" + medicineid + "' WHERE patient_id = '" + id + "'";
+        var que = "SELECT COUNT(*) as count FROM patient WHERE patient_id = " + id;
+
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
-                var json = JSON.stringify(result)
-                console.log(json);
+                console.log("result:" + result);
+                if (result[0].count == 0) {
+                    console.log("Patient ID does not exists");
+                    res.render("patient", { response: result });
+                }
+                else {
+                    var que = "UPDATE patient SET first_name = '" + firstname + "' , last_name = '" + lastname + "', username = '" + username + "', password= '" + password + "', address = '" + address + "', city = '" + city + "', country='" + country + "',payment_id= '" + patiendid + "', hospital_id = '" + hospitalid + "',medicine_id='" + medicineid + "' WHERE patient_id = '" + id + "'";
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
+                            var json = JSON.stringify(result)
+                            console.log(json);
+
+                        }
+                    });
+                }
 
             }
         });
+
+
+
+
     }
     else if (deleteid != null) {
-        var que = "DELETE FROM patient WHERE patient_id=" + deleteid;
-        db.query(que, function (err, result, fields) {
+
+        var que1 = "SELECT COUNT(*) as count FROM patient WHERE patient_id = " + deleteid;
+        db.query(que1, function (err, result, fields) {
             if (err) {
                 throw err;
             }
             else {
+                if (result[0].count == 0) {
+                    console.log("Patient ID does not exists");
+                    res.render("patient", { response: result });
+                }
+                else {
+                    var que = "DELETE FROM patient WHERE patient_id=" + deleteid;
+                    db.query(que, function (err, result, fields) {
+                        if (err) {
+                            throw err;
+                        }
+                        else {
 
-                var json = JSON.stringify(result)
-                console.log(json);
+                            var json = JSON.stringify(result)
+                            console.log(json);
 
+                        }
+
+                    });
+                }
             }
 
         });
+
     }
     else if (city != null) {
         var firstname = req.body.firstname;
@@ -764,13 +805,13 @@ app.post('/queries1', (req, res) => {
                 res.render("queries", { response: result });
             }
         });
-    
+
     }
- 
+
 
 })
 app.post('/queries2', (req, res) => {
-    if (req.body.readall1  != null) {
+    if (req.body.readall1 != null) {
         var id = parseInt(req.body.deleteidmedicine);
 
         var que = "SELECT payment_id, date_of_transaction FROM mode_of_payment WHERE type_of_payment= 'credit card' ;";
@@ -803,115 +844,115 @@ app.post('/queries3', (req, res) => {
         });
     }
 })
-    app.post('/queries4', (req, res) => {
-        if (req.body.readall4  != null) {
-            var id = parseInt(req.body.deleteidmedicine);
-    
-            var que = "SELECT SUM(salary) as TOTAL_CHICAGO_BUDGET FROM doctor WHERE city = 'Chicago';";
-            db.query(que, function (err, result, fields) {
-                if (err) {
-                    throw err;
-                }
-                else {
-                    var json = JSON.stringify(result)
-                    console.log(json);
-                    res.render("queries", { response: result });
-                }
-            });
-        }
-    
-    })
-    app.post('/queries5', (req, res) => {
-        if (req.body.readall5  != null) {
-            var id = parseInt(req.body.deleteidmedicine);
-    
-            var que = "SELECT COUNT(payment_id) as TOTAL_FUNDS_COLLECTED FROM mode_of_payment WHERE date_of_transaction > '12/11/20'" ;
-            db.query(que, function (err, result, fields) {
-                if (err) {
-                    throw err;
-                }
-                else {
-                    var json = JSON.stringify(result)
-                    console.log(json);
-                    res.render("queries", { response: result });
-                }
-            });
-        }
-    
-    })
-    
-    app.post('/queries6', (req, res) => {
-        if (req.body.readall6  != null) {
-            var id = parseInt(req.body.deleteidmedicine);
-    
-            var que = "SELECT COUNT(number_of_staff) as p,name FROM hospital GROUP BY name  HAVING SUM(number_of_staff) < 50 ;" ;
-            db.query(que, function (err, result, fields) {
-                if (err) {
-                    throw err;
-                }
-                else {
-                    var json = JSON.stringify(result)
-                    console.log(json);
-                    res.render("queries", { response: result });
-                }
-            });
-        }
-    
-    })
-    app.post('/queries7', (req, res) => {
-        if (req.body.readall7  != null) {
-            var id = parseInt(req.body.deleteidmedicine);
-    
-            var que = "Select * from f;" ;
-            db.query(que, function (err, result, fields) {
-                if (err) {
-                    throw err;
-                }
-                else {
-                    var json = JSON.stringify(result)
-                    console.log(json);
-                    res.render("queries", { response: result });
-                }
-            });
-        }
-    
-    })
-    app.post('/queries8', (req, res) => {
-        if (req.body.readall8  != null) {
-            var id = parseInt(req.body.deleteidmedicine);
-    
-            var que = "select * from POC;" ;
-            db.query(que, function (err, result, fields) {
-                if (err) {
-                    throw err;
-                }
-                else {
-                    var json = JSON.stringify(result)
-                    console.log(json);
-                    res.render("queries", { response: result });
-                }
-            });
-        }
-    
-    })
-    app.post('/queries9', (req, res) => {
-        if (req.body.readall9  != null) {
-            var id = parseInt(req.body.deleteidmedicine);
-    
-            var que = "Select * from PAY;" ;
-            db.query(que, function (err, result, fields) {
-                if (err) {
-                    throw err;
-                }
-                else {
-                    var json = JSON.stringify(result)
-                    console.log(json);
-                    res.render("queries", { response: result });
-                }
-            });
-        }
-    
-    })
+app.post('/queries4', (req, res) => {
+    if (req.body.readall4 != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "SELECT SUM(salary) as TOTAL_CHICAGO_BUDGET FROM doctor WHERE city = 'Chicago';";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    }
+
+})
+app.post('/queries5', (req, res) => {
+    if (req.body.readall5 != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "SELECT COUNT(payment_id) as TOTAL_FUNDS_COLLECTED FROM mode_of_payment WHERE date_of_transaction > '12/11/20'";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    }
+
+})
+
+app.post('/queries6', (req, res) => {
+    if (req.body.readall6 != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "SELECT COUNT(number_of_staff) as p,name FROM hospital GROUP BY name  HAVING SUM(number_of_staff) < 50 ;";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    }
+
+})
+app.post('/queries7', (req, res) => {
+    if (req.body.readall7 != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "Select * from f;";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    }
+
+})
+app.post('/queries8', (req, res) => {
+    if (req.body.readall8 != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "select * from POC;";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    }
+
+})
+app.post('/queries9', (req, res) => {
+    if (req.body.readall9 != null) {
+        var id = parseInt(req.body.deleteidmedicine);
+
+        var que = "Select * from PAY;";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("queries", { response: result });
+            }
+        });
+    }
+
+})
 
 module.exports = db;
 
