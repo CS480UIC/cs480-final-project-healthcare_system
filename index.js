@@ -16,10 +16,10 @@ app.listen(3000, () => {
 app.set("view engine", "ejs");
 
 const db = mysql.createConnection({
-    user: 'rrr',
+    user: 'root',
     host: 'localhost',
-    password: 'PASS',
-    database: 'bookstore'
+    password: 'password',
+    database: 'healthcare_system'
 
 });
 db.connect(function (error) {
@@ -554,7 +554,7 @@ app.post('/modeofpayment', (req, res) => {
 
             }
         });
-        
+
     }
     else {
         var typeofpayment = req.body.typeofpayment;
@@ -609,7 +609,7 @@ app.post('/hospitalentity', (req, res) => {
             }
 
         });
-        
+
     }
     else if (req.body.updateid != null) {
         var id = req.body.updateid;
@@ -645,7 +645,7 @@ app.post('/hospitalentity', (req, res) => {
 
             }
         });
-       
+
     }
     else {
         var name = req.body.name;
@@ -749,7 +749,7 @@ app.post('/patientfeedback', (req, res) => {
 
             }
         });
-        
+
     }
     else {
         var employeeid = req.body.employeeid;
@@ -818,7 +818,7 @@ app.post('/doctor', (req, res) => {
             }
 
         });
-        
+
     }
     else if (req.body.updateid != null) {
         var id = req.body.updateid;
@@ -864,7 +864,7 @@ app.post('/doctor', (req, res) => {
 
             }
         });
-        
+
     }
     else {
         var first_name = req.body.first_name;
@@ -902,7 +902,7 @@ app.post('/employee', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
     if (req.body.readall != null) {
         var id = req.body.readall;
-        var que = "SELECT * FROM employee WHERE employee_id = " + id;
+        var que = "SELECT * FROM employee"
 
         db.query(que, function (err, result, fields) {
             if (err) {
@@ -987,8 +987,8 @@ app.post('/employee', (req, res) => {
 
             }
         });
-        
-        
+
+
     }
     else {
         var first_name = req.body.first_name;
