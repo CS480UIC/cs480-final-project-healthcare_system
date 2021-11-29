@@ -289,10 +289,6 @@ app.post('/patient', (req, res) => {
 
             }
         });
-
-
-
-
     }
     else if (deleteid != null) {
 
@@ -1227,5 +1223,29 @@ app.post('/queries9', (req, res) => {
 
 })
 
+
+app.post('/dropandcreate', (req, res) => {
+    var que1 = "CREATE TABLE `hospital` ( `hospital_id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(45) NOT NULL, `address` varchar(45) NOT NULL,`phone_no` varchar(45) NOT NULL,`number_of_staff` int(11) NOT NULL, PRIMARY KEY (`hospital_id`),UNIQUE KEY `hospital_id_UNIQUE` (`hospital_id`))";
+    var que2 = "CREATE TABLE `medicine` (`medicine_id` int(11) NOT NULL AUTO_INCREMENT,`medicine_name` varchar(45) NOT NULL, `price` varchar(50) NOT NULL, `expiry_term_year` varchar(35) NOT NULL,`hospital_id` int(11) NOT NULL,   PRIMARY KEY (`medicine_id`), UNIQUE KEY `medicine_id_UNIQUE` (`medicine_id`))";
+    var que3 = "CREATE TABLE `mode_of_payment` (`payment_id` int(11) NOT NULL AUTO_INCREMENT,  `type_of_payment` varchar(45) NOT NULL,`doc_referred` varchar(45) NOT NULL,`date_of_transaction` varchar(20) NOT NULL,  PRIMARY KEY (`payment_id`), UNIQUE KEY `payment_id_UNIQUE` (`payment_id`) )";
+    var que4 = "CREATE TABLE `patient` (`patient_id` int(11) NOT NULL AUTO_INCREMENT,`first_name` varchar(45) NOT NULL,`last_name` varchar(45) NOT NULL,`username` varchar(45) NOT NULL, `password` varchar(45) NOT NULL,`address` varchar(45) NOT NULL,`city` varchar(45) NOT NULL, `country` varchar(45) NOT NULL,`payment_id` int(11) NOT NULL,`hospital_id` int(11) NOT NULL,`medicine_id` int(11) NOT NULL,PRIMARY KEY (`patient_id`), UNIQUE KEY `patient_id_UNIQUE` (`patient_id`),UNIQUE KEY `payment_id_UNIQUE` (`payment_id`),UNIQUE KEY `username_UNIQUE` (`username`), UNIQUE KEY `hospital_id_UNIQUE` (`hospital_id`),UNIQUE KEY `medicine_id_UNIQUE` (`medicine_id`)CONSTRAINT `hospital_id` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`),CONSTRAINT `medicine_id` FOREIGN KEY (`medicine_id`) REFERENCES `medicine` (`medicine_id`),CONSTRAINT `payment_id` FOREIGN KEY (`payment_id`) REFERENCES `mode_of_payment` (`payment_id`))";
+    var que5 = "CREATE TABLE `patient_feedback` (`patient_id` int(11) NOT NULL AUTO_INCREMENT,`employee_id` int(11) NOT NULL,`feedback` varchar(45) NOT NULL,`patient_name` varchar(20) NOT NULL,`date_of_feedback` varchar(20) NOT NULL, PRIMARY KEY (`patient_id`),UNIQUE KEY `idpatient_feedback_UNIQUE` (`patient_id`))";
+    var que6 = "CREATE TABLE `employee` (`employee_id` int(11) NOT NULL,`first_name` varchar(20) NOT NULL, `last_name` varchar(20) NOT NULL,`address` varchar(20) NOT NULL,`email` varchar(20) NOT NULL,`city` varchar(20) NOT NULL,`country` varchar(20) NOT NULL,`description` varchar(70) DEFAULT NULL,`hospital_name` varchar(20) DEFAULT NULL,`salary` varchar(45) NOT NULL, `type_of_employment` varchar(20) NOT NULL,`hospital_id` int(11) NOT NULL,PRIMARY KEY (`employee_id`),UNIQUE KEY `idpatient_UNIQUE` (`employee_id`),UNIQUE KEY `hospital_id_UNIQUE` (`hospital_id`),UNIQUE KEY `hospital_name_UNIQUE` (`hospital_name`),CONSTRAINT `hospital_id_employee` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`)) ";
+    var que7 = "CREATE TABLE `doctor` (`doctor_employee_id` int(11) NOT NULL AUTO_INCREMENT,`first_name` varchar(45) NOT NULL,`last_name` varchar(45) NOT NULL, `address` varchar(45) NOT NULL,`email` varchar(45) NOT NULL, `city` varchar(45) NOT NULL,`country` varchar(45) DEFAULT NULL,`description` varchar(45) NOT NULL,`hospital_name` varchar(20) DEFAULT NULL, `salary` varchar(56) NOT NULL,`type_of_employment` varchar(20) NOT NULL,`phone_number` varchar(30) NOT NULL, `speciality` varchar(20) NOT NULL, `doc_description` varchar(45) NOT NULL,`hospital_table_id` int(11) NOT NULL,PRIMARY KEY (`doctor_employee_id`),UNIQUE KEY `doctor_employee_id_UNIQUE` (`doctor_employee_id`),UNIQUE KEY `hospital_table_id_UNIQUE` (`hospital_table_id`),CONSTRAINT `hospital_table_id` FOREIGN KEY (`hospital_table_id`) REFERENCES `hospital` (`hospital_id`))";
+
+
+    var dropdoc = "DROP TABLE IF EXISTS `doctor`";
+    var insertdoc = "INSERT INTO `doctor` VALUES (1,'Daniel','Micheal','south miller','xyz@gmail.com','Chicago','USA','my name is dianeal','sunshine','50000','employye','1234334343','General surgeon','best doctor in the city',1),(2,'John','Mason','123 st Taylor st','john@gmail.com','Chicago','United States','John','Cross Hospital','100000','employee','9876543210','ornithologist','cool doctor',2),(3,'James','Thames','65 Berkley st','james@gmail.com','Berkley','UK','good','Red Cross','140000','employee','98765894323','dermatology','great',3),(4,'ABC','XYZ','LEXINGTON','ABC@GMAIL.COM','HYD','INDIA','COOL','SUNRISE','100000','employee','1234567891','DOCTOR','PHYSICIAN',4),(5,'rani','Lakshmi','789 lewisburg lane','rani@gmail.com','mumbai','india','helper','sunset','500000','employee','5678943210','mbbs','helps everone',5)";
+
+    var dropemp = "DROP TABLE IF EXISTS `employee`";
+    var insertemp = "INSERT INTO `employee` VALUES (2,'Daniel','Micheal','south miller','xyz@gmail.com','Chicago','USA','my name is dianeal','sunshine','50000','doctor',2),(4,'harshith','alle','Gandhinagar','har@gmail.com','hyderbad','country','I am a workboy','srikara','40000','workboy',4),(5,'James','Thames','65 Berkley st','james@gmail.com','Berkley','UK','James is a general surgeon and a neurosurgeon.','red cross','140000','doctor',5)";
+
+    var drophosp = "DROP TABLE IF EXISTS `hospital`";
+    var inserthop = "INSERT INTO `hospital` VALUES (1,'Red Cross','main road st, lexington','3124335432',23),(2,'Merry hospital','tatylor st','3123435432',34),(3,'UI Health','roosevelt road','3124235432',78),(4,'sunrise','lewisburg','987651234',4),(5,'srikara','miller','5678912340',50)";
+
+    var dropmed = "DROP TABLE IF EXISTS `medicine`";
+    var insertmed = "INSERT INTO `medicine` VALUES (1,'Paracip 500','12','12/23/22',1),(2,'crocin','200','2/23/20',2),(3,'Advil','20','12/21/22',4),(5,'carpal','340','5/4/22',3),(6,'Advil pro max','30','11/23/22',5)";
+
+})
 module.exports = db;
 

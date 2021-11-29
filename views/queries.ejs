@@ -32,16 +32,16 @@
     </nav>
     <div class="row">
         <div class="col-md-6">
-            <h3>QUERIE:1</h3>
+            <h3>QUERY:1</h3>
             <form action="/queries1" method="post">
                 <h4>Salary greater than 10000 and less than 1000000</h4>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie1</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
@@ -74,11 +74,11 @@
                 <h4>payment type is credit</h4>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall1">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall1" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie1</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
@@ -110,11 +110,11 @@
                 <h4>speciality</h4>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie3</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
@@ -143,11 +143,11 @@
                 <h4>sum of salary</h4>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall4">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall4" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie3</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
@@ -175,11 +175,11 @@
                 <h4>budget</h4>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall5">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall5" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie5</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
@@ -207,11 +207,11 @@
                 <h4>count</h4>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall6">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall6" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie5</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
@@ -242,11 +242,11 @@
                 <h4>view</h4>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall7">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall7" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie5</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
@@ -275,11 +275,11 @@
                 <h3>view2</h3>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall8">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall8" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie5</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
@@ -311,11 +311,11 @@
                 <h3>view3</h3>
                 <div class="form-group">
                     <label for="exampleInputEmail1"></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall9">
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="readall9" hidden>
                 </div>
                 <button type="submit" class="btn btn-primary">querie9</button>
             </form>
-            <table>
+            <table class="table">
                 <% if(response.length != 0){ %>
                     <%   var i=1; %>
                         <%  response.forEach(function(data){  %>
