@@ -423,7 +423,7 @@ app.post('/medicine', (req, res) => {
         var name = req.body.name;
         var price = req.body.price;
         var expiry = req.body.expiry;
-        var hospital = req.body.hospital;
+
         var que = "SELECT COUNT(*) as count7 FROM medicine WHERE medicine_id = " + medid;
 
         db.query(que, function (err, result, fields) {
@@ -437,7 +437,7 @@ app.post('/medicine', (req, res) => {
                     res.render("medicine", { response: result });
                 }
                 else {
-                    var que = "UPDATE medicine SET medicine_name = '" + name + "' , price = '" + price + "', expiry_term_year = '" + expiry + "', hospital_id= '" + hospital + "' WHERE medicine_id = '" + id + "'";
+                    var que = "UPDATE medicine SET medicine_name = '" + name + "' , price = '" + price + "', expiry_term_year = '" + expiry + "' WHERE medicine_id = '" + medid + "'";
                     db.query(que, function (err, result, fields) {
                         if (err) {
                             throw err;
