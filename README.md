@@ -61,8 +61,9 @@ The project is integrated with a database named healthcare_system. It helps in p
 ![Medicine-update](https://user-images.githubusercontent.com/89802060/143816422-34c65a51-3ed9-4d8f-89b4-68ac715ec0f2.png)
 
 ## CRUD for modeofpayment
-![main modeofpayment](/screenshot/modeofpayment_main.png?raw=true)
-![create modeofpayment](/screenshot/modeofpayment_create.png?raw=true)
-![delete modeofpayment](/screenshot/modeofpayment_delete.png?raw=true)
-![read modeofpayment](/screenshot/modeofpayment_read.png?raw=true)
-![update modeofpayment](/screenshot/modeofpayment_update.png?raw=true)
+![Payment-main](https://user-images.githubusercontent.com/89802060/143816711-f3a67db4-6c83-4672-9ffb-dace36317d7a.png)
+![Payment-create](https://user-images.githubusercontent.com/89802060/143816750-55ed8b29-ca9e-4a51-b225-e7025e16c386.png)
+![Payment-delete](https://user-images.githubusercontent.com/89802060/143816768-084a76d6-2048-482c-88ac-85412ffc0540.png)
+![Payment-read](https://user-images.githubusercontent.com/89802060/143816778-be146a80-c1fe-49dd-bed7-2464d0c524fd.png)
+![Payment-update](https://user-images.githubusercontent.com/89802060/143816782-36475cdc-6f1f-4bb6-8cf7-8a9bf64bb477.png)
+
