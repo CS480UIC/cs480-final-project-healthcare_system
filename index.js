@@ -1246,6 +1246,16 @@ app.post('/dropandcreate', (req, res) => {
     var dropmed = "DROP TABLE IF EXISTS `medicine`";
     var insertmed = "INSERT INTO `medicine` VALUES (1,'Paracip 500','12','12/23/22',1),(2,'crocin','200','2/23/20',2),(3,'Advil','20','12/21/22',4),(5,'carpal','340','5/4/22',3),(6,'Advil pro max','30','11/23/22',5)";
 
+    var dropmode = "DROP TABLE IF EXISTS `mode_of_payment`";
+    var insertmode = "INSERT INTO `mode_of_payment` VALUES (1,'credit card','john mason','12/11/20'),(2,'cash','john mason','12/12/20'),(3,'credit card','john mason','12/21/20'),(5,'debit card','Hiral','9/8/21'),(21,'cash','XYZ','2/7/21')";
+
+    var patient = "DROP TABLE IF EXISTS `patient`";
+    var insertpatient = "INSERT INTO `patient` VALUES (1,'john','mason','john1234','john1234','123 main road','Chicago','US',1,2,2),(2,'Merry','main','merybest','dsfwe','234 taylor st','Chicago','US',2,3,1)";
+    
+    var dropfeed = "DROP TABLE IF EXISTS `patient_feedback`";
+var insertfeed = "INSERT INTO `patient_feedback` VALUES (1,1,'Very good treatment','john','3/12/2020'),(2,3,'Very good treatment','karl','3/12/2020'),(3,3,'The treatment was done correctly.','karen','3/12/2020'),(4,4,'Very good treatment','pranavi','3/12/2020'),(5,5,'Very good treatment','hiral','3/12/2020')";
+
+
 })
 module.exports = db;
 
