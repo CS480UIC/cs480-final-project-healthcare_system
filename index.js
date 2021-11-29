@@ -1224,7 +1224,37 @@ app.post('/queries9', (req, res) => {
 })
 
 
-app.post('/dropandcreate', (req, res) => {
+app.post('/droptable', (req, res) => {
+
+
+    var dropdoc = "DROP TABLE IF EXISTS `doctor`";
+
+    var dropemp = "DROP TABLE IF EXISTS `employee`";
+
+    var drophosp = "DROP TABLE IF EXISTS `hospital`";
+
+    var dropmed = "DROP TABLE IF EXISTS `medicine`";
+
+    var dropmode = "DROP TABLE IF EXISTS `mode_of_payment`";
+
+    var patient = "DROP TABLE IF EXISTS `patient`";
+
+    var dropfeed = "DROP TABLE IF EXISTS `patient_feedback`";
+
+    db.query(dropfeed, function (err, result, fields) { });
+    db.query(dropmode, function (err, result, fields) { });
+    db.query(dropmed, function (err, result, fields) { });
+    db.query(patient, function (err, result, fields) { });
+    db.query(dropdoc, function (err, result, fields) { });
+    db.query(dropemp, function (err, result, fields) { });
+    db.query(drophosp, function (err, result, fields) { });
+
+
+    console.log("inserted successfullly");
+
+})
+
+app.post('/createtable', (req, res) => {
     var que1 = "CREATE TABLE `hospital` ( `hospital_id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(45) NOT NULL, `address` varchar(45) NOT NULL,`phone_no` varchar(45) NOT NULL,`number_of_staff` int(11) NOT NULL, PRIMARY KEY (`hospital_id`),UNIQUE KEY `hospital_id_UNIQUE` (`hospital_id`))";
     var que2 = "CREATE TABLE `medicine` (`medicine_id` int(11) NOT NULL AUTO_INCREMENT,`medicine_name` varchar(45) NOT NULL, `price` varchar(50) NOT NULL, `expiry_term_year` varchar(35) NOT NULL,`hospital_id` int(11) NOT NULL,   PRIMARY KEY (`medicine_id`), UNIQUE KEY `medicine_id_UNIQUE` (`medicine_id`))";
     var que3 = "CREATE TABLE `mode_of_payment` (`payment_id` int(11) NOT NULL AUTO_INCREMENT,  `type_of_payment` varchar(45) NOT NULL,`doc_referred` varchar(45) NOT NULL,`date_of_transaction` varchar(20) NOT NULL,  PRIMARY KEY (`payment_id`), UNIQUE KEY `payment_id_UNIQUE` (`payment_id`) )";
@@ -1234,34 +1264,6 @@ app.post('/dropandcreate', (req, res) => {
     var que7 = "CREATE TABLE `doctor` (`doctor_employee_id` int(11) NOT NULL AUTO_INCREMENT,`first_name` varchar(45) NOT NULL,`last_name` varchar(45) NOT NULL, `address` varchar(45) NOT NULL,`email` varchar(45) NOT NULL, `city` varchar(45) NOT NULL,`country` varchar(45) DEFAULT NULL,`description` varchar(45) NOT NULL,`hospital_name` varchar(20) DEFAULT NULL, `salary` varchar(56) NOT NULL,`type_of_employment` varchar(20) NOT NULL,`phone_number` varchar(30) NOT NULL, `speciality` varchar(20) NOT NULL, `doc_description` varchar(45) NOT NULL,`hospital_table_id` int(11) NOT NULL,PRIMARY KEY (`doctor_employee_id`),UNIQUE KEY `doctor_employee_id_UNIQUE` (`doctor_employee_id`),UNIQUE KEY `hospital_table_id_UNIQUE` (`hospital_table_id`),CONSTRAINT `hospital_table_id` FOREIGN KEY (`hospital_table_id`) REFERENCES `hospital` (`hospital_id`))";
 
 
-    var dropdoc = "DROP TABLE IF EXISTS `doctor`";
-    var insertdoc = "INSERT INTO `doctor` VALUES (1,'Daniel','Micheal','south miller','xyz@gmail.com','Chicago','USA','my name is dianeal','sunshine','50000','employye','1234334343','General surgeon','best doctor in the city',1),(2,'John','Mason','123 st Taylor st','john@gmail.com','Chicago','United States','John','Cross Hospital','100000','employee','9876543210','ornithologist','cool doctor',2),(3,'James','Thames','65 Berkley st','james@gmail.com','Berkley','UK','good','Red Cross','140000','employee','98765894323','dermatology','great',3),(4,'ABC','XYZ','LEXINGTON','ABC@GMAIL.COM','HYD','INDIA','COOL','SUNRISE','100000','employee','1234567891','DOCTOR','PHYSICIAN',4),(5,'rani','Lakshmi','789 lewisburg lane','rani@gmail.com','mumbai','india','helper','sunset','500000','employee','5678943210','mbbs','helps everone',5)";
-
-    var dropemp = "DROP TABLE IF EXISTS `employee`";
-    var insertemp = "INSERT INTO `employee` VALUES (2,'Daniel','Micheal','south miller','xyz@gmail.com','Chicago','USA','my name is dianeal','sunshine','50000','doctor',2),(4,'harshith','alle','Gandhinagar','har@gmail.com','hyderbad','country','I am a workboy','srikara','40000','workboy',4),(5,'James','Thames','65 Berkley st','james@gmail.com','Berkley','UK','James is a general surgeon and a neurosurgeon.','red cross','140000','doctor',5)";
-
-    var drophosp = "DROP TABLE IF EXISTS `hospital`";
-    var inserthop = "INSERT INTO `hospital` VALUES (1,'Red Cross','main road st, lexington','3124335432',23),(2,'Merry hospital','tatylor st','3123435432',34),(3,'UI Health','roosevelt road','3124235432',78),(4,'sunrise','lewisburg','987651234',4),(5,'srikara','miller','5678912340',50)";
-
-    var dropmed = "DROP TABLE IF EXISTS `medicine`";
-    var insertmed = "INSERT INTO `medicine` VALUES (1,'Paracip 500','12','12/23/22',1),(2,'crocin','200','2/23/20',2),(3,'Advil','20','12/21/22',4),(5,'carpal','340','5/4/22',3),(6,'Advil pro max','30','11/23/22',5)";
-
-    var dropmode = "DROP TABLE IF EXISTS `mode_of_payment`";
-    var insertmode = "INSERT INTO `mode_of_payment` VALUES (1,'credit card','john mason','12/11/20'),(2,'cash','john mason','12/12/20'),(3,'credit card','john mason','12/21/20'),(5,'debit card','Hiral','9/8/21'),(21,'cash','XYZ','2/7/21')";
-
-    var patient = "DROP TABLE IF EXISTS `patient`";
-    var insertpatient = "INSERT INTO `patient` VALUES (1,'john','mason','john1234','john1234','123 main road','Chicago','US',1,2,2),(2,'Merry','main','merybest','dsfwe','234 taylor st','Chicago','US',2,3,1)";
-
-    var dropfeed = "DROP TABLE IF EXISTS `patient_feedback`";
-    var insertfeed = "INSERT INTO `patient_feedback` VALUES (1,1,'Very good treatment','john','3/12/2020'),(2,3,'Very good treatment','karl','3/12/2020'),(3,3,'The treatment was done correctly.','karen','3/12/2020'),(4,4,'Very good treatment','pranavi','3/12/2020'),(5,5,'Very good treatment','hiral','3/12/2020')";
-
-    db.query(dropfeed, function (err, result, fields) { });
-    db.query(dropmode, function (err, result, fields) { });
-    db.query(dropmed, function (err, result, fields) { });
-    db.query(patient, function (err, result, fields) { });
-    db.query(dropdoc, function (err, result, fields) { });
-    db.query(dropemp, function (err, result, fields) { });
-    db.query(drophosp, function (err, result, fields) { });
 
     db.query(que1, function (err, result, fields) { });
     db.query(que6, function (err, result, fields) { });
@@ -1272,6 +1274,29 @@ app.post('/dropandcreate', (req, res) => {
     db.query(que5, function (err, result, fields) { });
 
 
+    console.log("inserted successfullly");
+
+})
+
+app.post('/inserttable', (req, res) => {
+
+    var insertdoc = "INSERT INTO `doctor` VALUES (1,'Daniel','Micheal','south miller','xyz@gmail.com','Chicago','USA','my name is dianeal','sunshine','50000','employye','1234334343','General surgeon','best doctor in the city',1),(2,'John','Mason','123 st Taylor st','john@gmail.com','Chicago','United States','John','Cross Hospital','100000','employee','9876543210','ornithologist','cool doctor',2),(3,'James','Thames','65 Berkley st','james@gmail.com','Berkley','UK','good','Red Cross','140000','employee','98765894323','dermatology','great',3),(4,'ABC','XYZ','LEXINGTON','ABC@GMAIL.COM','HYD','INDIA','COOL','SUNRISE','100000','employee','1234567891','DOCTOR','PHYSICIAN',4),(5,'rani','Lakshmi','789 lewisburg lane','rani@gmail.com','mumbai','india','helper','sunset','500000','employee','5678943210','mbbs','helps everone',5)";
+
+    var insertemp = "INSERT INTO `employee` VALUES (2,'Daniel','Micheal','south miller','xyz@gmail.com','Chicago','USA','my name is dianeal','sunshine','50000','doctor',2),(4,'harshith','alle','Gandhinagar','har@gmail.com','hyderbad','country','I am a workboy','srikara','40000','workboy',4),(5,'James','Thames','65 Berkley st','james@gmail.com','Berkley','UK','James is a general surgeon and a neurosurgeon.','red cross','140000','doctor',5)";
+
+    var inserthop = "INSERT INTO `hospital` VALUES (1,'Red Cross','main road st, lexington','3124335432',23),(2,'Merry hospital','tatylor st','3123435432',34),(3,'UI Health','roosevelt road','3124235432',78),(4,'sunrise','lewisburg','987651234',4),(5,'srikara','miller','5678912340',50)";
+
+    var insertmed = "INSERT INTO `medicine` VALUES (1,'Paracip 500','12','12/23/22',1),(2,'crocin','200','2/23/20',2),(3,'Advil','20','12/21/22',4),(5,'carpal','340','5/4/22',3),(6,'Advil pro max','30','11/23/22',5)";
+
+    var insertmode = "INSERT INTO `mode_of_payment` VALUES (1,'credit card','john mason','12/11/20'),(2,'cash','john mason','12/12/20'),(3,'credit card','john mason','12/21/20'),(5,'debit card','Hiral','9/8/21'),(21,'cash','XYZ','2/7/21')";
+
+    var insertpatient = "INSERT INTO `patient` VALUES (1,'john','mason','john1234','john1234','123 main road','Chicago','US',1,2,2),(2,'Merry','main','merybest','dsfwe','234 taylor st','Chicago','US',2,3,1)";
+
+    var insertfeed = "INSERT INTO `patient_feedback` VALUES (1,1,'Very good treatment','john','3/12/2020'),(2,3,'Very good treatment','karl','3/12/2020'),(3,3,'The treatment was done correctly.','karen','3/12/2020'),(4,4,'Very good treatment','pranavi','3/12/2020'),(5,5,'Very good treatment','hiral','3/12/2020')";
+
+
+
+
     db.query(inserthop, function (err, result, fields) { });
     db.query(insertemp, function (err, result, fields) { });
     db.query(insertdoc, function (err, result, fields) { });
@@ -1280,7 +1305,7 @@ app.post('/dropandcreate', (req, res) => {
     db.query(insertmode, function (err, result, fields) { });
     db.query(insertmed, function (err, result, fields) { });
 
-
+    console.log("inserted successfullly");
 
 })
 module.exports = db;
