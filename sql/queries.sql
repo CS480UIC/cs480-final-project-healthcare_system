@@ -68,7 +68,7 @@ select employee_id from employee e where  Exists
 (select hospital_id from hospital as h
  where h.number_of_staff>20);
 
-Select * from f
+Select * from f;
 
 
 
