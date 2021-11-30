@@ -43,7 +43,7 @@ BEGIN
     SET Bonus = Salary+100;
     RETURN Bonus; 
 END$$
-DELIMITER ;
+DELIMITER ; $$$$$$$$
 
 CREATE FUNCTION is_greater
 	( 
