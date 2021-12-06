@@ -10,16 +10,16 @@ var routes = Router()
 app.use(express.urlencoded());
 app.use(express.json());
 
-app.listen(3000, () => {
+app.listen(5000, () => {
     console.log('server started port  3000');
 })
 app.set("view engine", "ejs");
 
 const db = mysql.createConnection({
-    user: 'root',
+    user: 'rrr',
     host: 'localhost',
-    password: 'password',
-    database: 'healthcare_system'
+    password: 'PASS',
+    database: 'bookstore'
 
 });
 db.connect(function (error) {
@@ -113,7 +113,7 @@ app.get('/main', (req, res) => {
 })
 app.get('/register', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
-    res.render("register", { response: "" });
+    res.render("register", { });
     /*  db.query("SELECT * FROM patient", function (err, result, fields) {
           if (err) throw err;
           var json = JSON.stringify(result)
@@ -125,17 +125,37 @@ app.get('/register', (req, res) => {
 app.post('/register', (req, res) => {
     //res.sendFile(path.join(__dirname, '/views/register.html'), { name: "karan" })
 
-    console.log(req.body);
-    var username = req.body.username;
-    var password = req.body.password;
+    if(req.body.readalladmin != null){
 
-    var que = "INSERT INTO admin (username,password) VALUES ('" + username + "','" + password + "')";
-    db.query(que, function (err, result, fields) {
-        if (err) throw err;
-
-        var json = JSON.stringify(result)
-        res.render("register", { response: "record successfully inserted" });
-    });
+        var id = req.body.name;
+        var que = "SELECT * FROM admin";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+    
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("register", { response: result });
+            }
+    
+        });
+    }
+    else{
+        console.log(req.body);
+        var username = req.body.username;
+        var password = req.body.password;
+    
+        var que = "INSERT INTO admin (username,password) VALUES ('" + username + "','" + password + "')";
+        db.query(que, function (err, result, fields) {
+            if (err) throw err;
+    
+            var json = JSON.stringify(result)
+            res.render("register", { response: result });
+        });
+    }
+    
 
 })
 
@@ -575,7 +595,20 @@ app.post('/modeofpayment', (req, res) => {
 
 
 app.post('/hospitalentity', (req, res) => {
-    if (req.body.deleteidpayment != null) {
+    if(req.body.readall){
+        var que = "SELECT * FROM hospital";
+        db.query(que, function (err, result, fields) {
+            if (err) {
+                throw err;
+            }
+            else {
+                var json = JSON.stringify(result)
+                console.log(json);
+                res.render("hospitalentity", { response: result });
+            }
+        });
+    }
+    else if (req.body.deleteidpayment != null) {
         var id = parseInt(req.body.deleteidpayment);
         var que1 = "SELECT COUNT(*) as count FROM hospital WHERE hospital_id = " + id;
         db.query(que1, function (err, result, fields) {
@@ -1172,7 +1205,7 @@ app.post('/queries7', (req, res) => {
     if (req.body.readall7 != null) {
         var id = parseInt(req.body.deleteidmedicine);
 
-        var que = "Select * from f;";
+        var que = "Select * from f";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -1190,7 +1223,7 @@ app.post('/queries8', (req, res) => {
     if (req.body.readall8 != null) {
         var id = parseInt(req.body.deleteidmedicine);
 
-        var que = "select * from POC;";
+        var que = "select * from poc";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -1208,7 +1241,7 @@ app.post('/queries9', (req, res) => {
     if (req.body.readall9 != null) {
         var id = parseInt(req.body.deleteidmedicine);
 
-        var que = "Select * from PAY;";
+        var que = "Select * from pay";
         db.query(que, function (err, result, fields) {
             if (err) {
                 throw err;
@@ -1226,7 +1259,7 @@ app.post('/queries9', (req, res) => {
 
 app.post('/droptable', (req, res) => {
 
-
+   
     var dropdoc = "DROP TABLE IF EXISTS `doctor`";
 
     var dropemp = "DROP TABLE IF EXISTS `employee`";
@@ -1240,7 +1273,17 @@ app.post('/droptable', (req, res) => {
     var patient = "DROP TABLE IF EXISTS `patient`";
 
     var dropfeed = "DROP TABLE IF EXISTS `patient_feedback`";
+    var viewdrop1="DROP VIEW IF EXISTS `POC`";
 
+
+    var viewdrop2="DROP VIEW IF EXISTS `PAY`";
+     
+    var viewdrop3="DROP VIEW IF EXISTS `f`";
+
+    
+    db.query(viewdrop1, function (err, result, fields) { });
+    db.query(viewdrop2, function (err, result, fields) { });
+    db.query(viewdrop3, function (err, result, fields) { });
     db.query(dropfeed, function (err, result, fields) { });
     db.query(dropmode, function (err, result, fields) { });
     db.query(dropmed, function (err, result, fields) { });
@@ -1250,7 +1293,7 @@ app.post('/droptable', (req, res) => {
     db.query(drophosp, function (err, result, fields) { });
 
 
-    console.log("inserted successfullly");
+    console.log("droped successfullly");
 
 })
 
@@ -1258,12 +1301,12 @@ app.post('/createtable', (req, res) => {
     var que1 = "CREATE TABLE `hospital` ( `hospital_id` int(11) NOT NULL AUTO_INCREMENT, `name` varchar(45) NOT NULL, `address` varchar(45) NOT NULL,`phone_no` varchar(45) NOT NULL,`number_of_staff` int(11) NOT NULL, PRIMARY KEY (`hospital_id`),UNIQUE KEY `hospital_id_UNIQUE` (`hospital_id`))";
     var que2 = "CREATE TABLE `medicine` (`medicine_id` int(11) NOT NULL AUTO_INCREMENT,`medicine_name` varchar(45) NOT NULL, `price` varchar(50) NOT NULL, `expiry_term_year` varchar(35) NOT NULL,`hospital_id` int(11) NOT NULL,   PRIMARY KEY (`medicine_id`), UNIQUE KEY `medicine_id_UNIQUE` (`medicine_id`))";
     var que3 = "CREATE TABLE `mode_of_payment` (`payment_id` int(11) NOT NULL AUTO_INCREMENT,  `type_of_payment` varchar(45) NOT NULL,`doc_referred` varchar(45) NOT NULL,`date_of_transaction` varchar(20) NOT NULL,  PRIMARY KEY (`payment_id`), UNIQUE KEY `payment_id_UNIQUE` (`payment_id`) )";
-    var que4 = "CREATE TABLE `patient` (`patient_id` int(11) NOT NULL AUTO_INCREMENT,`first_name` varchar(45) NOT NULL,`last_name` varchar(45) NOT NULL,`username` varchar(45) NOT NULL, `password` varchar(45) NOT NULL,`address` varchar(45) NOT NULL,`city` varchar(45) NOT NULL, `country` varchar(45) NOT NULL,`payment_id` int(11) NOT NULL,`hospital_id` int(11) NOT NULL,`medicine_id` int(11) NOT NULL,PRIMARY KEY (`patient_id`), UNIQUE KEY `patient_id_UNIQUE` (`patient_id`),UNIQUE KEY `payment_id_UNIQUE` (`payment_id`),UNIQUE KEY `username_UNIQUE` (`username`), UNIQUE KEY `hospital_id_UNIQUE` (`hospital_id`),UNIQUE KEY `medicine_id_UNIQUE` (`medicine_id`)CONSTRAINT `hospital_id` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`),CONSTRAINT `medicine_id` FOREIGN KEY (`medicine_id`) REFERENCES `medicine` (`medicine_id`),CONSTRAINT `payment_id` FOREIGN KEY (`payment_id`) REFERENCES `mode_of_payment` (`payment_id`))";
+    var que4 = "CREATE TABLE `patient` (`patient_id` int(11) NOT NULL AUTO_INCREMENT,`first_name` varchar(45) NOT NULL,`last_name` varchar(45) NOT NULL,`username` varchar(45) NOT NULL, `password` varchar(45) NOT NULL,`address` varchar(45) NOT NULL,`city` varchar(45) NOT NULL, `country` varchar(45) NOT NULL,`payment_id` int(11) NOT NULL,`hospital_id` int(11) NOT NULL,`medicine_id` int(11) NOT NULL,PRIMARY KEY (`patient_id`), UNIQUE KEY `patient_id_UNIQUE` (`patient_id`),UNIQUE KEY `payment_id_UNIQUE` (`payment_id`),UNIQUE KEY `username_UNIQUE` (`username`), UNIQUE KEY `hospital_id_UNIQUE` (`hospital_id`),UNIQUE KEY `medicine_id_UNIQUE` (`medicine_id`) ,CONSTRAINT `hospital_id` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`),CONSTRAINT `medicine_id` FOREIGN KEY (`medicine_id`) REFERENCES `medicine` (`medicine_id`),CONSTRAINT `payment_id` FOREIGN KEY (`payment_id`) REFERENCES `mode_of_payment` (`payment_id`))";
     var que5 = "CREATE TABLE `patient_feedback` (`patient_id` int(11) NOT NULL AUTO_INCREMENT,`employee_id` int(11) NOT NULL,`feedback` varchar(45) NOT NULL,`patient_name` varchar(20) NOT NULL,`date_of_feedback` varchar(20) NOT NULL, PRIMARY KEY (`patient_id`),UNIQUE KEY `idpatient_feedback_UNIQUE` (`patient_id`))";
     var que6 = "CREATE TABLE `employee` (`employee_id` int(11) NOT NULL,`first_name` varchar(20) NOT NULL, `last_name` varchar(20) NOT NULL,`address` varchar(20) NOT NULL,`email` varchar(20) NOT NULL,`city` varchar(20) NOT NULL,`country` varchar(20) NOT NULL,`description` varchar(70) DEFAULT NULL,`hospital_name` varchar(20) DEFAULT NULL,`salary` varchar(45) NOT NULL, `type_of_employment` varchar(20) NOT NULL,`hospital_id` int(11) NOT NULL,PRIMARY KEY (`employee_id`),UNIQUE KEY `idpatient_UNIQUE` (`employee_id`),UNIQUE KEY `hospital_id_UNIQUE` (`hospital_id`),UNIQUE KEY `hospital_name_UNIQUE` (`hospital_name`),CONSTRAINT `hospital_id_employee` FOREIGN KEY (`hospital_id`) REFERENCES `hospital` (`hospital_id`)) ";
     var que7 = "CREATE TABLE `doctor` (`doctor_employee_id` int(11) NOT NULL AUTO_INCREMENT,`first_name` varchar(45) NOT NULL,`last_name` varchar(45) NOT NULL, `address` varchar(45) NOT NULL,`email` varchar(45) NOT NULL, `city` varchar(45) NOT NULL,`country` varchar(45) DEFAULT NULL,`description` varchar(45) NOT NULL,`hospital_name` varchar(20) DEFAULT NULL, `salary` varchar(56) NOT NULL,`type_of_employment` varchar(20) NOT NULL,`phone_number` varchar(30) NOT NULL, `speciality` varchar(20) NOT NULL, `doc_description` varchar(45) NOT NULL,`hospital_table_id` int(11) NOT NULL,PRIMARY KEY (`doctor_employee_id`),UNIQUE KEY `doctor_employee_id_UNIQUE` (`doctor_employee_id`),UNIQUE KEY `hospital_table_id_UNIQUE` (`hospital_table_id`),CONSTRAINT `hospital_table_id` FOREIGN KEY (`hospital_table_id`) REFERENCES `hospital` (`hospital_id`))";
-
-
+    
+    
 
     db.query(que1, function (err, result, fields) { });
     db.query(que6, function (err, result, fields) { });
@@ -1272,9 +1315,9 @@ app.post('/createtable', (req, res) => {
     db.query(que3, function (err, result, fields) { });
     db.query(que2, function (err, result, fields) { });
     db.query(que5, function (err, result, fields) { });
+    
 
-
-    console.log("inserted successfullly");
+    console.log("created successfullly");
 
 })
 
@@ -1293,6 +1336,9 @@ app.post('/inserttable', (req, res) => {
     var insertpatient = "INSERT INTO `patient` VALUES (1,'john','mason','john1234','john1234','123 main road','Chicago','US',1,2,2),(2,'Merry','main','merybest','dsfwe','234 taylor st','Chicago','US',2,3,1)";
 
     var insertfeed = "INSERT INTO `patient_feedback` VALUES (1,1,'Very good treatment','john','3/12/2020'),(2,3,'Very good treatment','karl','3/12/2020'),(3,3,'The treatment was done correctly.','karen','3/12/2020'),(4,4,'Very good treatment','pranavi','3/12/2020'),(5,5,'Very good treatment','hiral','3/12/2020')";
+    var view1="CREATE VIEW poc AS SELECT E.employee_id, E.first_name FROM employee E INNER JOIN Doctor D ON D.doctor_employee_id = E.employee_id GROUP BY E.employee_id ORDER BY E.first_name ASC";
+    var view2="Create view pay as SELECT first_name, last_name FROM patient as p WHERE EXISTS (SELECT t.patient_id FROM patient_feedback as t WHERE p.patient_id=t.patient_id AND date_of_feedback > '2/12/20')";
+    var view3="CREATE VIEW f AS select employee_id from employee e where  Exists (select hospital_id from hospital as h where h.number_of_staff>20)";
 
 
 
@@ -1304,6 +1350,10 @@ app.post('/inserttable', (req, res) => {
     db.query(insertfeed, function (err, result, fields) { });
     db.query(insertmode, function (err, result, fields) { });
     db.query(insertmed, function (err, result, fields) { });
+    db.query(view1, function (err, result, fields) { });
+    db.query(view2, function (err, result, fields) { });
+    db.query(view3, function (err, result, fields) { });
+
 
     console.log("inserted successfullly");
 

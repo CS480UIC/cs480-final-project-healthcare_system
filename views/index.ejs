@@ -55,22 +55,48 @@
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
             <label class="form-check-label" for="exampleCheck1">Remember me</label>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Login</button>
     </form>
+
 </body>
+<div class="row">
+    <div class="col-md-6">
+        <span class="border">
+            <div class="col-md-4">
+                <form action="/droptable" method="post">
+        
+                    <button type="submit" class="btn btn-success">Drop schema</button>
+                </form>
+            </div>
+        </span>
+        <span class="border">
+            <div class="col-md-4">
+    
+                <form action="/createtable" method="post">
+        
+                    <button type="submit" class="btn btn-success">Create the schema</button>
+                </form>
+            </div>
+        </span>
+        <span class="border">
+            <div class="col-md-4">
+                <form action="/inserttable" method="post">
+        
+                    <button type="submit" class="btn btn-success">Insert data</button>
+                </form>
+            </div>
+        </span>
+    </div>
+       
+   <div class="col-md-4">
+       <img src="https://revcycleintelligence.com/images/site/features/2018-11-29_Healthcare_workforce_managment.jpg" width="500" />
+   </div>
+    
+</div>
 
-<form action="/droptable" method="post">
 
-    <button type="submit" class="btn btn-primary">Drop</button>
-</form>
 
-<form action="/createtable" method="post">
 
-    <button type="submit" class="btn btn-primary">create</button>
-</form>
-<form action="/inserttable" method="post">
 
-    <button type="submit" class="btn btn-primary">Insert</button>
-</form>
 
 </html>
